@@ -1,0 +1,25 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><style>
+@keyframes pencilMove{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-1.4px,1px) rotate(-5deg)}}
+.pencil{transform-box:fill-box;transform-origin:center;animation:pencilMove 2.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.pencil{animation:none}}
+</style>
+<mask id="mask0_8_1429" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-2" y="0" width="76" height="72">
+<path d="M73.5 0H-1.5V72H73.5V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_8_1429)">
+<mask id="mask1_8_1429" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-2" y="0" width="76" height="72">
+<path d="M-1.5 0H73.5V72H-1.5V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_8_1429)">
+<mask id="mask2_8_1429" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="29" y="24" width="32" height="30">
+<path d="M55.5167 24.7363L30.683 48.3122L29.8228 53.8398L35.585 53.0803L60.4171 29.5028L55.5167 24.7363Z" fill="white"/>
+</mask>
+<g mask="url(#mask2_8_1429)">
+<path d="M52.2935 24.8297V62.8107H12.7297V9.18945L36.0024 9.19012" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36.0024 24.8293H52.2935L36.0024 9.18994V24.8293Z" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M55.5167 24.7363L30.683 48.3122L29.8228 53.8398L35.585 53.0803L60.4171 29.5028L55.5167 24.7363Z" stroke="#018D86" class="pencil" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.6015 28.7223L56.3334 25.5435L58.9386 23.0704C59.3285 22.7002 59.9566 22.7036 60.3414 23.0779L62.2158 24.9011C62.6006 25.2754 62.5965 25.8789 62.2066 26.2491L59.6015 28.7223Z" fill="#018D86" class="pencil"/>
+</g>
+</g>
+</svg>

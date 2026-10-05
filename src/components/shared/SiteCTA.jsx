@@ -5,44 +5,54 @@ function SiteCTA() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+  const video = videoRef.current;
+  if (!video) return;
 
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.loop = true;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.loop = true;
+  video.playbackRate = 1.55;
 
-    const playVideo = async () => {
-      try {
-        await video.play();
-      } catch {
-        // Browser may briefly defer autoplay; retry when media is ready.
-      }
-    };
+  const playVideo = () => {
+    video.play().catch(() => {});
+  };
 
-    const handleLoaded = () => {
-      playVideo();
-    };
-
-    const handleVisibility = () => {
-      if (!document.hidden) {
-        playVideo();
-      }
-    };
-
-    video.addEventListener("loadeddata", handleLoaded);
-    video.addEventListener("canplay", handleLoaded);
-    document.addEventListener("visibilitychange", handleVisibility);
-
+  const handleLoaded = () => {
     playVideo();
+  };
 
-    return () => {
-      video.removeEventListener("loadeddata", handleLoaded);
-      video.removeEventListener("canplay", handleLoaded);
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, []);
+  const handlePause = () => {
+    if (!document.hidden) {
+      playVideo();
+    }
+  };
+
+  const handleVisibility = () => {
+    if (!document.hidden) {
+      playVideo();
+    }
+  };
+
+  video.addEventListener("loadedmetadata", handleLoaded);
+  video.addEventListener("loadeddata", handleLoaded);
+  video.addEventListener("canplay", handleLoaded);
+  video.addEventListener("pause", handlePause);
+  document.addEventListener("visibilitychange", handleVisibility);
+
+  playVideo();
+
+  const retryTimer = window.setInterval(playVideo, 3000);
+
+  return () => {
+    window.clearInterval(retryTimer);
+    video.removeEventListener("loadedmetadata", handleLoaded);
+    video.removeEventListener("loadeddata", handleLoaded);
+    video.removeEventListener("canplay", handleLoaded);
+    video.removeEventListener("pause", handlePause);
+    document.removeEventListener("visibilitychange", handleVisibility);
+  };
+}, []);
 
   return (
     <section
@@ -54,6 +64,7 @@ function SiteCTA() {
         items-center
         justify-center
         overflow-hidden
+        bg-[#0a0a0a]
         px-6
         py-20
         text-center
@@ -73,7 +84,7 @@ function SiteCTA() {
           w-full
           object-cover
           object-center
-          opacity-80
+          opacity-[0.52]
         "
         autoPlay
         muted
@@ -85,15 +96,48 @@ function SiteCTA() {
         <source src={heroVideo} type="video/mp4" />
       </video>
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-[1]
-          bg-[linear-gradient(90deg,rgba(8,9,9,0.64),rgba(8,9,9,0.18)_72%),linear-gradient(0deg,rgba(2,3,3,0.48),transparent_32%)]
-        "
-      />
+        {/* Main video blending layer */}
+<div
+  className="
+    pointer-events-none
+    absolute
+    inset-0
+    z-[1]
+    bg-[linear-gradient(180deg,rgba(8,9,9,0.92)_0%,rgba(8,9,9,0.68)_42%,rgba(5,16,15,0.42)_72%,rgba(4,10,9,0.78)_100%)]
+  "
+/>
+
+{/* Top transition */}
+<div
+  className="
+    pointer-events-none
+    absolute
+    inset-x-0
+    top-0
+    z-[2]
+    h-[120px]
+    bg-gradient-to-b
+    from-[#0a0a0a]
+    via-[#0a0a0a]/70
+    to-transparent
+  "
+/>
+
+{/* Bottom transition into footer */}
+<div
+  className="
+    pointer-events-none
+    absolute
+    inset-x-0
+    bottom-0
+    z-[2]
+    h-[130px]
+    bg-gradient-to-t
+    from-[#0a0a0a]
+    via-[#0a0a0a]/65
+    to-transparent
+  "
+/>
 
       <div className="relative z-10 flex flex-col items-center">
         <h2

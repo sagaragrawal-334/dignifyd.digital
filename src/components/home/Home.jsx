@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
 import SiteFooter from "../shared/SiteFooter";
@@ -21,9 +21,21 @@ import gallery5 from "../../assets/gallery-05.png";
 import gallery6 from "../../assets/gallery-06.png";
 import gallery7 from "../../assets/gallery-07.png";
 import gallery8 from "../../assets/gallery-08.jpeg";
+import gallery9 from "../../assets/gallery-09.jpeg";
+import gallery10 from "../../assets/gallery-10.jpeg";
+import gallery11 from "../../assets/gallery-11.jpeg";
+import gallery12 from "../../assets/gallery-12.jpeg";
+
+import workstreamsIcon from "../../assets/capabilities/workstreams.svg";
+import fastDeliveryIcon from "../../assets/capabilities/fast-delivery.svg";
+import predictablePricingIcon from "../../assets/capabilities/predictable-pricing.svg";
+import provenExpertiseIcon from "../../assets/capabilities/proven-expertise.svg";
+import iterateIcon from "../../assets/capabilities/iterate.svg";
+import customSolutionsIcon from "../../assets/capabilities/custom-solutions.svg";
 
 const galleryRowOne = [gallery1, gallery2, gallery3, gallery4];
 const galleryRowTwo = [gallery5, gallery6, gallery7, gallery8];
+const galleryRowThree = [gallery9, gallery10, gallery11, gallery12];
 
 const approach = [
   {
@@ -31,30 +43,16 @@ const approach = [
     copy: "We align on goals, scope, and success metrics before execution.",
     icon: (
       <svg
-        viewBox="0 0 72 72"
-        className="h-[72px] w-[72px]"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
         fill="none"
+        stroke="#00bdb5"
+        strokeWidth="1.5"
         aria-hidden="true"
       >
-        <circle
-          cx="31"
-          cy="31"
-          r="18"
-          stroke="currentColor"
-          strokeWidth="1.7"
-        />
-        <path
-          d="M44 44L58 58"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M25 16C18.5 18.5 14 24.3 14 31"
-          stroke="#00bdb5"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
+        <circle cx="11" cy="11" r="7" />
+        <line x1="16.5" y1="16.5" x2="21" y2="21" />
       </svg>
     ),
   },
@@ -63,28 +61,19 @@ const approach = [
     copy: "Our teams design, build, and deploy with speed and precision.",
     icon: (
       <svg
-        viewBox="0 0 72 72"
-        className="h-[72px] w-[72px]"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
         fill="none"
+        stroke="#00bdb5"
+        strokeWidth="1.5"
         aria-hidden="true"
       >
-        <path
-          d="M26 17L15 36L26 55"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M46 17L57 36L46 55"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="30" cy="36" r="2.3" fill="#00bdb5" />
-        <circle cx="36" cy="36" r="2.3" fill="#00bdb5" />
-        <circle cx="42" cy="36" r="2.3" fill="#00bdb5" />
+        <polyline points="7 8 3 12 7 16" />
+        <polyline points="17 8 21 12 17 16" />
+        <circle cx="10" cy="12" r="0.8" fill="#00bdb5" />
+        <circle cx="12" cy="12" r="0.8" fill="#00bdb5" />
+        <circle cx="14" cy="12" r="0.8" fill="#00bdb5" />
       </svg>
     ),
   },
@@ -93,60 +82,117 @@ const approach = [
     copy: "We refine continuously using performance data and feedback loops.",
     icon: (
       <svg
-        viewBox="0 0 72 72"
-        className="h-[72px] w-[72px]"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
         fill="none"
+        stroke="#00bdb5"
+        strokeWidth="1.5"
         aria-hidden="true"
       >
-        <path
-          d="M36 10L41.8 24.2L57 26.2L45.7 36.8L48.6 52L36 44.7L23.4 52L26.3 36.8L15 26.2L30.2 24.2L36 10Z"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M45 22C53 22 60 27 63 35"
-          stroke="#00bdb5"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M63 35L57 32"
-          stroke="#00bdb5"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
     ),
   },
 ];
 
 const capabilities = [
-  [
-    "Workstreams",
-    "All initiatives tracked through structured queues with clear ownership.",
-  ],
-  [
-    "Fast Delivery",
-    "Agile execution powered by prioritisation, sprints, and delivery benchmarks.",
-  ],
-  [
-    "Predictable Pricing",
-    "Transparent scope, clear commercials, and outcome-driven planning.",
-  ],
-  [
-    "Proven Expertise",
-    "Experience across brands, sectors, and high-impact digital initiatives.",
-  ],
-  [
-    "Iterate",
-    "Continuous refinement guided by feedback, data, and performance insights.",
-  ],
-  [
-    "Custom Solutions",
-    "Custom strategies and executions aligned to your business goals.",
-  ],
+  {
+    title: "Workstreams",
+    copy: "All initiatives tracked through structured queues with clear ownership.",
+    icon: workstreamsIcon,
+  },
+  {
+    title: "Fast Delivery",
+    copy: "Agile execution powered by prioritisation, sprints, and delivery benchmarks.",
+    icon: fastDeliveryIcon,
+  },
+  {
+    title: "Predictable Pricing",
+    copy: "Transparent scope, clear commercials, and outcome-driven planning.",
+    icon: predictablePricingIcon,
+  },
+  {
+    title: "Proven Expertise",
+    copy: "Experience across brands, sectors, and high-impact digital initiatives.",
+    icon: provenExpertiseIcon,
+  },
+  {
+    title: "Iterate",
+    copy: "Continuous refinement guided by feedback, data, and performance insights.",
+    icon: iterateIcon,
+  },
+  {
+    title: "Custom Solutions",
+    copy: "Custom strategies and executions aligned to your business goals.",
+    icon: customSolutionsIcon,
+  },
 ];
+
+function useInView() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.08,
+      },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, visible];
+}
+
+function ApproachCard({ item, index }) {
+  const [ref, visible] = useInView();
+
+  return (
+    <article
+      ref={ref}
+      className={`flex min-h-[197px] flex-col items-center text-center transition-[opacity,transform] duration-700 ease-out ${
+        visible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-[18px] opacity-0"
+      }`}
+      style={{
+        transitionDelay: `${index * 120}ms`,
+      }}
+    >
+      <div
+        className={`flex h-[72px] w-[72px] items-center justify-center ${
+          visible
+            ? "animate-[approachIconIn_900ms_cubic-bezier(.22,.61,.36,1)_both]"
+            : ""
+        }`}
+      >
+        {item.icon}
+      </div>
+
+      <h3 className="mt-[24px] text-[21px] font-medium leading-[35px] tracking-[-0.42px]">
+        {item.title}
+      </h3>
+
+      <p className="mt-[11px] max-w-[315px] text-[14px] leading-[27px] text-[#999]">
+        {item.copy}
+      </p>
+    </article>
+  );
+}
 
 function useMarquee({
   speed = 0.04,
@@ -154,31 +200,40 @@ function useMarquee({
   initialX = 0,
   cycle = 1200,
   scrollBoost = 0,
+  measureCycle = false,
 } = {}) {
   const ref = useRef(null);
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
     let previous = performance.now();
     let x = initialX;
     let previousScroll = window.scrollY;
 
     const tick = (time) => {
+      if (reduceMotion) {
+        if (ref.current) ref.current.style.transform = `translate3d(${initialX}px,0,0)`;
+        return;
+      }
       const delta = Math.min(time - previous, 32);
       previous = time;
 
       const scrollDelta = window.scrollY - previousScroll;
       previousScroll = window.scrollY;
+      const cycleWidth = measureCycle
+        ? ref.current?.children[4]?.offsetLeft || cycle
+        : cycle;
 
       x += direction * speed * delta;
       x += direction * scrollDelta * scrollBoost;
 
-      if (direction < 0 && x <= -cycle) {
-        x += cycle;
+      if (direction < 0) {
+        while (x <= -cycleWidth) x += cycleWidth;
       }
 
-      if (direction > 0 && x >= 0) {
-        x -= cycle;
+      if (direction > 0) {
+        while (x >= 0) x -= cycleWidth;
       }
 
       if (ref.current) {
@@ -191,7 +246,7 @@ function useMarquee({
     frame = requestAnimationFrame(tick);
 
     return () => cancelAnimationFrame(frame);
-  }, [cycle, direction, initialX, scrollBoost, speed]);
+  }, [cycle, direction, initialX, measureCycle, scrollBoost, speed]);
 
   return ref;
 }
@@ -207,7 +262,7 @@ function Eyebrow({ children }) {
 function BrandRail() {
   const trackRef = useMarquee({
     speed: 0.045,
-    direction: -1,
+    direction: 1,
     initialX: -2323,
     cycle: 1166,
   });
@@ -230,6 +285,7 @@ function BrandRail() {
 
         <div className="relative mt-[49px] h-[55px] w-full overflow-hidden">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[180px] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent" />
+
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[180px] bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent" />
 
           <div
@@ -245,7 +301,9 @@ function BrandRail() {
                   <div
                     key={`${copy}-${index}`}
                     className="flex h-[55px] shrink-0 items-center justify-center"
-                    style={{ width: `${item.width}px` }}
+                    style={{
+                      width: `${item.width}px`,
+                    }}
                   >
                     <img
                       src={item.src}
@@ -263,46 +321,46 @@ function BrandRail() {
   );
 }
 
-function WorkRail({ images, direction, initialX, top }) {
+function WorkRail({ images, initialX, top }) {
+  const [revealRef, visible] = useInView();
+
   const trackRef = useMarquee({
     speed: 0.075,
-    direction,
+    direction: -1,
     initialX,
     cycle: 1864,
     scrollBoost: 0.22,
+    measureCycle: true,
   });
 
-  const repeated = Array.from({ length: 10 }, () => images).flat();
-
-  const rotations = [
-    "-rotate-[3deg]",
-    "rotate-[3deg]",
-    "-rotate-[2deg]",
-    "rotate-[4deg]",
-  ];
+  const repeated = Array.from(
+    { length: 5 },
+    () => images,
+  ).flat();
 
   return (
     <div
-      className="absolute left-1/2 w-[1920px] -translate-x-1/2"
+      ref={revealRef}
+      className={`absolute left-1/2 w-[1920px] -translate-x-1/2 transition-opacity duration-1000 ease-out ${
+        visible ? "opacity-100" : "opacity-0"
+      }`}
       style={{ top }}
     >
       <div className="relative h-[424px] overflow-hidden">
-        <div
-          ref={trackRef}
-          className="absolute left-[-40px] top-0 flex w-max items-start gap-[8px]"
-        >
-          {repeated.map((image, index) => (
-            <div
-              key={`${image}-${index}`}
-              className={`h-[280px] w-[458px] shrink-0 overflow-hidden rounded-[24px] ${rotations[index % 4]}`}
-            >
-              <img
-                src={image}
-                alt=""
-                className="h-full w-full object-cover"
-              />
-            </div>
-          ))}
+        <div className="absolute left-[-40px] top-0 origin-top-left rotate-[4deg]">
+          <div
+            ref={trackRef}
+            className="flex w-max items-start gap-[8px]"
+          >
+            {repeated.map((image, index) => (
+              <div
+                key={`${image}-${index}`}
+                className="h-[280px] w-[458px] shrink-0 overflow-hidden rounded-[24px] max-[760px]:h-[220px] max-[760px]:w-[84vw] max-[760px]:rounded-[20px]"
+              >
+                <img src={image} alt="" className="h-full w-full object-cover" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -351,11 +409,18 @@ function ServiceMarquee() {
           <a
             key={`${copy}-${label}`}
             href="/services"
-            style={{ width: `${width}px` }}
-            className="flex h-[78px] shrink-0 items-center rounded-full border border-white/10 bg-[#0d0d0d] px-[24px] text-[19px] font-medium tracking-[-0.38px] text-[#fbfafc] no-underline transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.05]"
+            style={{
+              width: `${width}px`,
+            }}
+            className="flex h-[78px] shrink-0 items-center rounded-full border border-white/10 bg-[#0d0d0d] px-[24px] text-[19px] font-medium tracking-[-0.38px] text-[#fbfafc] no-underline transition-all duration-200 hover:-translate-y-[2px] hover:border-white/20 hover:bg-white/[0.05]"
           >
-            <span className="mr-[10px] text-[20px] text-cyan-300">+</span>
-            <span className="whitespace-nowrap">{label}</span>
+            <span className="mr-[10px] text-[20px] text-cyan-300">
+              +
+            </span>
+
+            <span className="whitespace-nowrap">
+              {label}
+            </span>
           </a>
         ))}
       </div>
@@ -364,6 +429,7 @@ function ServiceMarquee() {
   return (
     <div className="relative mt-[48px] overflow-hidden">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[150px] bg-gradient-to-r from-black via-black/80 to-transparent" />
+
       <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[150px] bg-gradient-to-l from-black via-black/80 to-transparent" />
 
       <div className="relative h-[78px] overflow-hidden">
@@ -395,43 +461,68 @@ export default function Home() {
   useEffect(() => {
     let frame = 0;
 
-    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const clamp = (value, min, max) =>
+      Math.min(Math.max(value, min), max);
 
     const updateHeroScroll = () => {
       cancelAnimationFrame(frame);
 
       frame = requestAnimationFrame(() => {
         const section = heroSectionRef.current;
+
         if (!section) return;
 
-        // Drive the hero animation from the hero's own position instead of
-        // global scrollY. This prevents the animation from starting too early.
         const rect = section.getBoundingClientRect();
-        const raw = clamp(-rect.top / 560, 0, 1);
-        const progress = raw * raw * (3 - 2 * raw);
 
-        // The live composition is primarily the video rising through the hero.
+        /*
+          The video should be the main moving element.
+          The hero text/buttons stay visually stable.
+        */
+        const raw = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : clamp(
+          -rect.top / 1050,
+          0,
+          1,
+        );
+
+        const progress = raw;
+
         if (heroVideoStageRef.current) {
-          heroVideoStageRef.current.style.transform =
-            `translate3d(0, ${-progress * 330}px, 0)`;
+        heroVideoStageRef.current.style.transform =
+        `translate3d(0, ${-progress * 330}px, 0)`;
         }
 
-        // Keep the hero copy visible and stable, with only a restrained drift.
         if (heroContentRef.current) {
           heroContentRef.current.style.transform =
-            `translate3d(0, ${-progress * 28}px, 0)`;
-          heroContentRef.current.style.opacity = `${1 - progress * 0.08}`;
+          "translate3d(0, 0, 0)";
+          heroContentRef.current.style.opacity = "1";
         }
       });
     };
 
-    window.addEventListener("scroll", updateHeroScroll, { passive: true });
-    window.addEventListener("resize", updateHeroScroll);
+    window.addEventListener(
+      "scroll",
+      updateHeroScroll,
+      { passive: true },
+    );
+
+    window.addEventListener(
+      "resize",
+      updateHeroScroll,
+    );
+
     updateHeroScroll();
 
     return () => {
-      window.removeEventListener("scroll", updateHeroScroll);
-      window.removeEventListener("resize", updateHeroScroll);
+      window.removeEventListener(
+        "scroll",
+        updateHeroScroll,
+      );
+
+      window.removeEventListener(
+        "resize",
+        updateHeroScroll,
+      );
+
       cancelAnimationFrame(frame);
     };
   }, []);
@@ -442,80 +533,85 @@ export default function Home() {
 
       <main>
         {/* =========================================================
-            HERO + VIDEO SCROLL STAGE
+            HERO + VIDEO
         ========================================================= */}
-        <section ref={heroSectionRef} className="relative h-[1312px] bg-[#0c0c0c]">
-          {/* Hero stays in place while its content moves with scroll. */}
+
+        <section
+          ref={heroSectionRef}
+          className="relative h-[1351px] bg-[#0c0c0c] max-[1100px]:h-[1397px] max-[800px]:h-[1078px] max-[760px]:h-[1029px]"
+        >
           <div className="sticky top-0 z-10 h-[645px]">
             <div className="absolute left-1/2 top-0 w-full -translate-x-1/2">
               <div
                 ref={heroContentRef}
                 className="relative w-full will-change-transform"
               >
-                <div className="absolute left-1/2 top-[153px] w-[1200px] -translate-x-1/2 text-center max-[1000px]:w-[calc(100vw-32px)] max-[760px]:top-[118px]">
-                <h1 className="mx-auto w-[740px] max-w-full text-[91px] font-medium leading-[118px] tracking-[-4.55px] text-[#fbfafc] max-[1000px]:text-[68px] max-[1000px]:leading-[1.1] max-[760px]:text-[48px]">
-                  <span className="font-['Baskerville'] font-normal italic tracking-normal">
-                    Digital
-                  </span>{" "}
-                  <span>Execution,</span>
-                  <br />
-                  <span>built for scale.</span>
-                </h1>
+                <div className="absolute left-1/2 top-[153px] w-[1200px] -translate-x-1/2 text-center max-[1100px]:top-[96px] max-[1000px]:w-[calc(100vw-32px)] max-[800px]:top-[120px] max-[800px]:w-[calc(100%-48px)] max-[760px]:top-[85px]">
+                  <h1 className="mx-auto w-[740px] max-w-full text-[91px] font-medium leading-[118px] tracking-[-4.55px] text-[#fbfafc] max-[1100px]:w-[658px] max-[1100px]:text-[80px] max-[1100px]:leading-[1.1] max-[1000px]:tracking-[-4px] max-[800px]:w-full max-[800px]:text-[68px] max-[800px]:leading-[1.08] max-[800px]:tracking-[-3.4px] max-[760px]:max-w-[220px] max-[760px]:text-[42px] max-[760px]:leading-[2] max-[760px]:tracking-[-2.1px]">
+                    <span className="font-['Baskerville'] font-normal italic tracking-normal">
+                      Digital
+                    </span>{" "}
+                    <br className="hidden max-[1100px]:inline max-[800px]:hidden" />
+                    <span>Execution,</span>
+                    <br />
+                    <span>built for scale.</span>
+                  </h1>
 
-                <p className="mx-auto mt-[17px] w-[568px] max-w-full text-[28px] font-medium leading-[42px] tracking-[-0.56px] text-[#999] max-[760px]:text-[18px] max-[760px]:leading-[27px]">
-                  Move beyond fragmented vendors with integrated, growth-driven
-                  digital solutions.
-                </p>
+                  <p className="mx-auto mt-[17px] w-[568px] max-w-full text-[28px] font-medium leading-[42px] tracking-[-0.56px] text-[#999] max-[1100px]:mt-[55px] max-[1100px]:text-[18px] max-[1100px]:leading-[27px] max-[800px]:mt-[28px] max-[760px]:mt-[28px] max-[760px]:max-w-[220px]">
+                    Move beyond fragmented vendors with integrated,
+                    growth-driven digital solutions.
+                  </p>
 
-                <div className="mt-[29px] flex justify-center gap-[24px] max-[760px]:flex-col max-[760px]:items-center max-[760px]:gap-[12px]">
-                  <a
-                    href="/contact"
-                    className="inline-flex h-[68px] w-[329px] items-center justify-center rounded-full bg-[#018d87] text-[21px] font-medium tracking-[-0.42px] text-white transition-all duration-300 hover:bg-[#00a69f] hover:shadow-[0_0_28px_rgba(1,141,135,0.28)] max-[760px]:h-[58px] max-[760px]:w-full max-[760px]:max-w-[329px] max-[760px]:text-[17px]"
-                  >
-                    Start Your Digital Journey
-                  </a>
+                  <div className="mt-[29px] flex justify-center gap-[24px] max-[1100px]:gap-[12px] max-[800px]:mt-[18px] max-[760px]:mt-[8px]">
+                    <a
+                      href="/contact"
+                      className="inline-flex h-[68px] w-[329px] items-center justify-center rounded-full bg-[#018d87] text-[21px] font-medium tracking-[-0.42px] text-white transition-all duration-300 hover:bg-[#00a69f] hover:shadow-[0_0_28px_rgba(1,141,135,0.28)] max-[1100px]:h-[38px] max-[1100px]:w-auto max-[1100px]:px-[16px] max-[1100px]:text-[12px] max-[1100px]:tracking-normal"
+                    >
+                      <span className="max-[1100px]:hidden">Start Your Digital Journey</span>
+                      <span className="hidden max-[1100px]:inline">Get Started</span>
+                    </a>
 
-                  <a
-                    href="/contact"
-                    className="inline-flex h-[68px] w-[233px] items-center justify-center rounded-full border border-white/10 bg-[rgba(13,13,13,0.5)] text-[21px] font-medium tracking-[-0.42px] text-[#fbfafc] backdrop-blur-[5px] transition-all duration-300 hover:border-white/20 hover:bg-white/[0.035] max-[760px]:h-[58px] max-[760px]:w-full max-[760px]:max-w-[233px] max-[760px]:text-[17px]"
-                  >
-                    Schedule a Call
-                  </a>
-                </div>
+                    <a
+                      href="/contact"
+                      className="inline-flex h-[68px] w-[233px] items-center justify-center rounded-full border border-white/10 bg-[rgba(13,13,13,0.5)] text-[21px] font-medium tracking-[-0.42px] text-[#fbfafc] backdrop-blur-[5px] transition-all duration-300 hover:border-white/20 hover:bg-white/[0.035] max-[1100px]:h-[38px] max-[1100px]:w-auto max-[1100px]:px-[16px] max-[1100px]:text-[12px] max-[1100px]:tracking-normal"
+                    >
+                      Schedule a Call
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Video rises through the hero as the page scrolls. */}
-          <div
-            className="absolute left-1/2 top-[645px] z-20 h-[667px] w-full -translate-x-1/2 overflow-visible"
-          >
+          <div className="absolute left-1/2 top-[645px] z-20 h-[667px] w-full -translate-x-1/2 overflow-visible max-[1200px]:top-[605px] max-[800px]:top-[491px] max-[760px]:top-[689px] max-[760px]:h-[300px]">
             <div
               ref={heroVideoStageRef}
               className="relative h-full w-full will-change-transform"
             >
-              <div className="absolute left-1/2 top-0 h-[603px] w-[1792px] -translate-x-1/2 overflow-hidden rounded-[48px] bg-transparent">
-              <div className="absolute left-1/2 top-[-129px] h-[861px] w-[1200px] -translate-x-1/2 overflow-hidden rounded-[48px]">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="h-full w-full object-cover"
-                >
-                  <source src={heroVideo} type="video/mp4" />
-                </video>
+              <div className="absolute left-1/2 top-0 h-[603px] w-[1792px] -translate-x-1/2 overflow-hidden rounded-[48px] bg-transparent max-[1200px]:h-auto max-[1200px]:w-[calc(100%-64px)] max-[1200px]:aspect-[1200/861] max-[1200px]:rounded-[32px] max-[800px]:w-[calc(100%-48px)] max-[760px]:rounded-[24px]">
+                <div className="absolute left-1/2 top-[-129px] h-[861px] w-[1200px] -translate-x-1/2 overflow-hidden rounded-[48px] max-[1200px]:top-0 max-[1200px]:h-full max-[1200px]:w-full max-[1200px]:rounded-[32px] max-[800px]:rounded-[24px]">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    className="h-full w-full object-cover"
+                  >
+                    <source
+                      src={heroVideo}
+                      type="video/mp4"
+                    />
+                  </video>
 
-                <div className="pointer-events-none absolute inset-0 bg-black/[0.06]" />
+                  <div className="pointer-events-none absolute inset-0 bg-black/[0.06]" />
 
-                <img
-                  src={logo}
-                  alt="Dignifyd"
-                  className="pointer-events-none absolute left-1/2 top-1/2 w-[437px] max-w-[55%] -translate-x-1/2 -translate-y-1/2 brightness-0 invert"
-                />
-              </div>
+                  <img
+                    src={logo}
+                    alt="Dignifyd"
+                    className="pointer-events-none absolute left-1/2 top-1/2 w-[437px] max-w-[55%] -translate-x-1/2 -translate-y-1/2 brightness-0 invert"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -524,15 +620,19 @@ export default function Home() {
         {/* =========================================================
             TRUSTED BRANDS
         ========================================================= */}
+
         <BrandRail />
 
         {/* =========================================================
             APPROACH
         ========================================================= */}
-        <section className="h-[917px] bg-black pt-[64px]">
-          <div className="mx-auto h-[789px] w-[1200px] max-w-[calc(100vw-32px)] rounded-[50px] bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a]">
-            <div className="mx-auto w-[1104px] max-w-[calc(100%-96px)] pt-[64px] text-center max-[760px]:max-w-[calc(100%-40px)]">
-              <Eyebrow>Our Approach</Eyebrow>
+
+        <section className="min-h-[917px] bg-black px-4 pb-16 pt-[64px] max-[1100px]:pb-[98px] max-[800px]:pb-[64px] max-[760px]:min-h-0 max-[760px]:px-4">
+          <div className="mx-auto min-h-[789px] w-[1200px] max-w-full rounded-[50px] bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a] max-[760px]:min-h-0 max-[760px]:rounded-[28px] max-[760px]:pb-12">
+            <div className="mx-auto w-[1104px] max-w-[calc(100%-96px)] pt-[64px] text-center max-[760px]:max-w-[calc(100%-40px)] max-[760px]:pt-10">
+              <Eyebrow>
+                Our Approach
+              </Eyebrow>
 
               <h2 className="mt-[8px] text-[70px] font-medium leading-[88px] tracking-[-3.5px] text-[#fbfafc] max-[1000px]:text-[54px] max-[1000px]:leading-[1.1] max-[760px]:text-[40px]">
                 Digital Growth,
@@ -546,24 +646,13 @@ export default function Home() {
                 A structured process built for scalable digital outcomes.
               </p>
 
-              <div className="mt-[65px] grid grid-cols-3 max-[760px]:grid-cols-1 max-[760px]:gap-[32px]">
-                {approach.map((item) => (
-                  <article
+              <div className="mt-[65px] grid grid-cols-3 max-[1100px]:mt-[14px] max-[1100px]:grid-cols-1 max-[1100px]:gap-y-[36px] max-[800px]:mt-[32px] max-[760px]:mt-[202px] max-[760px]:gap-y-[58px]">
+                {approach.map((item, index) => (
+                  <ApproachCard
                     key={item.title}
-                    className="flex min-h-[197px] flex-col items-center text-center"
-                  >
-                    <div className="flex h-[72px] w-[72px] items-center justify-center text-white">
-                      {item.icon}
-                    </div>
-
-                    <h3 className="mt-[24px] text-[21px] font-medium leading-[35px] tracking-[-0.42px]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-[11px] max-w-[315px] text-[14px] leading-[27px] text-[#999]">
-                      {item.copy}
-                    </p>
-                  </article>
+                    item={item}
+                    index={index}
+                  />
                 ))}
               </div>
 
@@ -580,29 +669,37 @@ export default function Home() {
         {/* =========================================================
             WORK GALLERY
         ========================================================= */}
-        <section className="relative h-[1028px] overflow-hidden bg-[#0a0a0a]">
+
+        <section className="relative h-[1028px] overflow-hidden bg-[#0a0a0a] max-[800px]:h-[947px] max-[760px]:h-[927px]">
           <WorkRail
             images={galleryRowOne}
-            direction={-1}
             initialX={0}
             top={25}
           />
 
           <WorkRail
             images={galleryRowTwo}
-            direction={1}
-            initialX={-3728}
+            initialX={-932}
             top={302}
+          />
+
+          <WorkRail
+            images={galleryRowThree}
+            initialX={-466}
+            top={579}
           />
         </section>
 
         {/* =========================================================
             VALUE
         ========================================================= */}
-        <section className="bg-black px-[24px] pb-[116px] pt-[72px]">
+
+        <section className="bg-black px-[24px] pb-[116px] pt-[72px] max-[1100px]:pb-[97px] max-[800px]:pb-[269px] max-[760px]:pb-[71px]">
           <div className="mx-auto w-[1200px] max-w-full">
             <div className="text-center">
-              <Eyebrow>Value</Eyebrow>
+              <Eyebrow>
+                Value
+              </Eyebrow>
 
               <h2 className="mt-[20px] text-[70px] font-medium leading-[1.05] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
                 Agile, precise{" "}
@@ -618,16 +715,16 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-[58px] grid grid-cols-[600px_1fr] items-start gap-[48px] max-[1100px]:grid-cols-1">
-              {/* CEO TILE */}
-              <article className="grid h-[320px] w-[600px] max-w-full grid-cols-[58%_42%] overflow-hidden rounded-[24px] border border-white/10 bg-[#0d0d0d] max-[760px]:h-auto max-[760px]:grid-cols-1">
-                <div className="flex flex-col justify-end p-[26px]">
+            <div className="mt-[58px] grid grid-cols-[600px_1fr] items-start gap-[48px] max-[1100px]:grid-cols-1 max-[760px]:mt-[75px]">
+              <article className="grid h-[320px] w-[600px] max-w-full grid-cols-[58%_42%] overflow-hidden rounded-[24px] border border-white/10 bg-[#0d0d0d] max-[760px]:order-2 max-[760px]:h-auto max-[760px]:grid-cols-1">
+                <div className="flex flex-col justify-end p-[26px] max-[760px]:order-2 max-[760px]:p-[24px]">
                   <p className="text-[14px] leading-[22px] text-white">
-                    “At Dignifyd Digital, we believe digital success is built
-                    on clarity, creativity, and trust. Our focus is simple—
-                    create meaningful digital solutions that help brands grow
-                    with purpose, impact, and integrity. Every project we take
-                    on is a partnership, not just a service.”
+                    &ldquo;At Dignifyd Digital, we believe digital success is
+                    built on clarity, creativity, and trust. Our focus is
+                    simple&mdash;create meaningful digital solutions that help
+                    brands grow with purpose, impact, and integrity. Every
+                    project we take on is a partnership, not just a service.
+                    &rdquo;
                   </p>
 
                   <p className="mt-[16px] text-[14px] font-medium text-white">
@@ -639,7 +736,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="relative min-h-[320px] overflow-hidden bg-[#131313] max-[760px]:h-[260px] max-[760px]:min-h-0">
+                <div className="relative min-h-[320px] overflow-hidden bg-[#131313] max-[760px]:order-1 max-[760px]:h-[350px] max-[760px]:min-h-0">
                   <img
                     src={portrait}
                     alt="Paavan Ahuja"
@@ -648,7 +745,7 @@ export default function Home() {
                 </div>
               </article>
 
-              <div className="flex flex-col justify-center gap-[34px] py-[18px]">
+              <div className="flex flex-col justify-center gap-[34px] py-[18px] max-[760px]:order-1 max-[760px]:gap-[72px]">
                 {[
                   [
                     "Scalable Execution Requests",
@@ -668,7 +765,7 @@ export default function Home() {
                       {title}
                     </h3>
 
-                    <p className="mt-[8px] max-w-[310px] text-[14px] leading-[22px] text-[#999]">
+                    <p className="mt-[8px] max-w-[310px] text-[14px] leading-[22px] text-[#999] max-[760px]:max-w-full">
                       {copy}
                     </p>
                   </article>
@@ -681,10 +778,13 @@ export default function Home() {
         {/* =========================================================
             CAPABILITIES
         ========================================================= */}
-        <section className="bg-[#0a0a0a] px-[24px] pb-[100px] pt-[40px]">
-          <div className="mx-auto w-[1200px] max-w-full rounded-[50px] border border-white/10 bg-[#0d0d0d] px-[48px] py-[64px] max-[760px]:rounded-[28px] max-[760px]:px-[20px]">
+
+        <section className="bg-[#0a0a0a] px-[24px] pb-[100px] pt-[40px] max-[1100px]:pb-[39px] max-[800px]:pb-[9px] max-[760px]:pb-[20px]">
+          <div className="mx-auto w-[1200px] max-w-full rounded-[50px] border border-white/10 bg-[#0d0d0d] px-[48px] pt-[64px] pb-[64px] max-[1100px]:pb-[28px] max-[760px]:rounded-[28px] max-[760px]:px-[20px]">
             <div className="text-center">
-              <Eyebrow>Capabilities</Eyebrow>
+              <Eyebrow>
+                Capabilities
+              </Eyebrow>
 
               <h2 className="mt-[18px] text-[70px] font-medium leading-[1.1] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
                 Why leading brands{" "}
@@ -699,29 +799,36 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-[54px] grid grid-cols-3 gap-x-[8px] gap-y-[40px] max-[900px]:grid-cols-2 max-[640px]:grid-cols-1">
-              {capabilities.map(([title, copy], index) => (
-                <article
-                  key={title}
-                  className="flex flex-col items-center rounded-[24px] px-[20px] py-[12px] text-center"
-                >
-                  <div className="flex h-[72px] w-[72px] items-center justify-center text-white">
-                    <div className="flex h-[48px] w-[48px] items-center justify-center rounded-full border border-white/20 text-cyan-300">
-                      <span className="text-[16px] font-medium">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+            <div className="mt-[54px] grid grid-cols-3 gap-x-[8px] gap-y-[40px] max-[1100px]:mt-[59px] max-[1100px]:grid-cols-1 max-[1100px]:gap-y-[119px] max-[800px]:mt-[26px] max-[800px]:gap-y-[109px] max-[760px]:mt-[70px] max-[760px]:gap-y-[98px]">
+              {capabilities.map(
+                ({
+                  title,
+                  copy,
+                  icon,
+                  }) => (
+                  <article
+                    key={title}
+                    className="flex flex-col items-center rounded-[24px] px-[20px] py-[12px] text-center"
+                  >
+                    <div className="flex h-[72px] w-[72px] items-center justify-center overflow-visible">
+                      <img
+                        src={icon}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-[72px] w-[72px] object-contain transition-transform duration-300 hover:scale-[1.04]"
+                      />
                     </div>
-                  </div>
 
-                  <h3 className="mt-[18px] text-[21px] font-medium leading-[35px]">
-                    {title}
-                  </h3>
+                    <h3 className="mt-[18px] text-[21px] font-medium leading-[35px]">
+                      {title}
+                    </h3>
 
-                  <p className="mx-auto mt-[8px] max-w-[275px] text-[14px] leading-[22px] text-[#999]">
-                    {copy}
-                  </p>
-                </article>
-              ))}
+                    <p className="mx-auto mt-[8px] max-w-[275px] text-[14px] leading-[22px] text-[#999]">
+                      {copy}
+                    </p>
+                  </article>
+                ),
+              )}
             </div>
 
             <div className="mt-[42px] flex justify-center">
@@ -738,9 +845,12 @@ export default function Home() {
         {/* =========================================================
             SERVICES
         ========================================================= */}
+
         <section className="bg-black pb-[72px] pt-[92px]">
           <div className="mx-auto w-[1200px] max-w-[calc(100vw-32px)] text-center">
-            <Eyebrow>Services</Eyebrow>
+            <Eyebrow>
+              Services
+            </Eyebrow>
 
             <h2 className="mt-[18px] text-[70px] font-medium leading-[1.08] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
               All your digital{" "}
@@ -771,9 +881,35 @@ export default function Home() {
         {/* =========================================================
             CTA + FOOTER
         ========================================================= */}
+
         <SiteCTA />
         <SiteFooter />
       </main>
+
+      <style>{`
+        @keyframes approachIconIn {
+          0% {
+            transform: translateY(8px) scale(.82) rotate(-4deg);
+            opacity: 0;
+          }
+
+          70% {
+            transform: translateY(-1px) scale(1.04) rotate(0deg);
+            opacity: 1;
+          }
+
+          100% {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          [class*="animate-[approachIconIn"] {
+            animation: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

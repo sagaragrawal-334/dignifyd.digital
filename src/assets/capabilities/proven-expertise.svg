@@ -1,0 +1,38 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><style>
+@keyframes medalPulse{0%,100%{stroke-dashoffset:0;opacity:.95}50%{stroke-dashoffset:12;opacity:1}}
+.medal-accent{stroke-dasharray:36;animation:medalPulse 2.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.medal-accent{animation:none}}
+</style>
+<mask id="mask0_8_1367" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-2" y="0" width="76" height="72">
+<path d="M73.5 0H-1.5V72H73.5V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_8_1367)">
+<mask id="mask1_8_1367" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-2" y="0" width="76" height="72">
+<path d="M-1.5 0H73.5V72H-1.5V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_8_1367)">
+<mask id="mask2_8_1367" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="22" y="36" width="28" height="27">
+<path d="M22.3942 49.7519C22.3929 42.5383 28.4832 36.6893 35.9974 36.6879C43.5115 36.6865 49.604 42.5333 49.6053 49.7469C49.6066 56.9605 43.5163 62.8093 36.0022 62.8107C28.488 62.8121 22.3956 56.9655 22.3942 49.7519Z" fill="white"/>
+</mask>
+<g mask="url(#mask2_8_1367)">
+<mask id="mask3_8_1367" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-2" y="0" width="76" height="72">
+<path d="M-1.5 0H73.5V72H-1.5V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask3_8_1367)">
+<mask id="mask4_8_1367" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="13" y="9" width="31" height="36">
+<path d="M13.5117 9.18945C13.5117 9.18945 23.8779 33.8233 28.5831 44.937C32.8605 45.0419 39.314 44.9582 43.4779 44.937C38.0931 32.2326 28.4065 9.18945 28.4065 9.18945" fill="white"/>
+</mask>
+<g mask="url(#mask4_8_1367)">
+<path d="M50.8841 9.23633C50.8841 9.23633 41.1459 32.3689 36.2769 43.9353" stroke="#018D86" class="medal-accent" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58.4884 9.18945C58.4884 9.18945 48.1222 33.4884 43.417 44.937C37.5698 44.9582 28.5222 44.937 28.5222 44.937L43.5936 9.18945" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M13.5117 9.18945C13.5117 9.18945 23.8779 33.8233 28.5831 44.937C32.8605 45.0419 39.314 44.9582 43.4779 44.937C38.0931 32.2326 28.4065 9.18945 28.4065 9.18945" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.0447 9.18945C21.0447 9.18945 30.7828 32.322 35.6519 43.8884" stroke="#018D86" class="medal-accent" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<path d="M22.3945 49.7493C22.3945 42.5357 28.4859 36.688 36.0001 36.688C43.5142 36.688 49.6056 42.5357 49.6056 49.7493C49.6056 56.9629 43.5142 62.8106 36.0001 62.8106C28.4859 62.8106 22.3945 56.9629 22.3945 49.7493Z" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.7068 49.7491C26.7068 44.8218 30.8674 40.8276 36 40.8276C41.1326 40.8276 45.2932 44.8218 45.2932 49.7491C45.2932 54.6764 41.1326 58.6706 36 58.6706C30.8674 58.6706 26.7068 54.6764 26.7068 49.7491Z" stroke="white" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.02 4.88"/>
+<path d="M33.9778 48.3343L36.4999 45.9131V53.5859" stroke="#018D86" class="medal-accent" stroke-width="2.09302" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

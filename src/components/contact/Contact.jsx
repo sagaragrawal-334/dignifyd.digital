@@ -2,7 +2,6 @@ import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
 import SiteFooter from "../shared/SiteFooter";
 
-
 import london from "../../assets/contact/London.svg";
 import illinois from "../../assets/contact/Illinois.svg";
 import calgary from "../../assets/contact/Calgary.svg";
@@ -64,7 +63,6 @@ function Contact() {
         text-[#fbfafc]
       "
     >
-      {/* Navbar */}
       <Navbar />
 
       <main className="w-full">
@@ -92,7 +90,6 @@ function Contact() {
             max-[760px]:pt-[130px]
           "
         >
-          {/* Heading */}
           <h1
             id="contact-title"
             className="
@@ -122,7 +119,6 @@ function Contact() {
             </em>
           </h1>
 
-          {/* Description */}
           <p
             className="
               mx-auto
@@ -144,7 +140,6 @@ function Contact() {
             grow and succeed online.
           </p>
 
-          {/* Contact Form */}
           <form
             onSubmit={handleSubmit}
             className="
@@ -160,7 +155,6 @@ function Contact() {
               max-[760px]:gap-5
             "
           >
-            {/* First + Last Name */}
             <div
               className="
                 grid
@@ -254,7 +248,6 @@ function Contact() {
               </label>
             </div>
 
-            {/* Email */}
             <label
               className="
                 grid
@@ -296,7 +289,6 @@ function Contact() {
               />
             </label>
 
-            {/* Mobile */}
             <label
               className="
                 grid
@@ -337,7 +329,6 @@ function Contact() {
               />
             </label>
 
-            {/* Requirements */}
             <label
               className="
                 grid
@@ -379,7 +370,6 @@ function Contact() {
               />
             </label>
 
-            {/* Form Button */}
             <button
               type="submit"
               className="
@@ -466,8 +456,8 @@ function Contact() {
                     justify-center
                     rounded-[20px]
                     border
-                    border-white/60
-                    bg-[linear-gradient(180deg,#000_0%,#018d87_100%)]
+                    border-white/45
+                    bg-[linear-gradient(180deg,#080b0b_0%,#082321_100%)]
                     px-6
                     py-7
                     text-center
@@ -478,7 +468,6 @@ function Contact() {
                     max-[760px]:min-h-[270px]
                   `}
                 >
-                  {/* Skyline */}
                   <img
                     src={location.skyline}
                     alt={`${location.city} skyline`}
@@ -486,14 +475,13 @@ function Contact() {
                       mb-[15px]
                       block
                       h-auto
-                      w-[282px]
+                      w-[300px]
                       max-w-full
                       object-contain
-                      opacity-[0.72]
+                      opacity-[0.82]
                     "
                   />
 
-                  {/* City */}
                   <h2
                     className="
                       mb-[14px]
@@ -507,7 +495,6 @@ function Contact() {
                     {location.city}
                   </h2>
 
-                  {/* Address */}
                   <p
                     className="
                       m-0
