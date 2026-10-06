@@ -1,76 +1,76 @@
 import { useEffect, useRef } from "react";
 import heroVideo from "../../assets/hero-video.mp4";
+import SiteFooter from "./SiteFooter";
 
 function SiteCTA() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-  video.loop = true;
-  video.playbackRate = 1.55;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.playbackRate = 1.55;
 
-  const playVideo = () => {
-    video.play().catch(() => {});
-  };
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
 
-  const handleLoaded = () => {
+    const handleLoaded = () => {
+      playVideo();
+    };
+
+    const handlePause = () => {
+      if (!document.hidden) {
+        playVideo();
+      }
+    };
+
+    const handleVisibility = () => {
+      if (!document.hidden) {
+        playVideo();
+      }
+    };
+
+    video.addEventListener("loadedmetadata", handleLoaded);
+    video.addEventListener("loadeddata", handleLoaded);
+    video.addEventListener("canplay", handleLoaded);
+    video.addEventListener("pause", handlePause);
+    document.addEventListener("visibilitychange", handleVisibility);
+
     playVideo();
-  };
 
-  const handlePause = () => {
-    if (!document.hidden) {
-      playVideo();
-    }
-  };
+    const retryTimer = window.setInterval(playVideo, 3000);
 
-  const handleVisibility = () => {
-    if (!document.hidden) {
-      playVideo();
-    }
-  };
-
-  video.addEventListener("loadedmetadata", handleLoaded);
-  video.addEventListener("loadeddata", handleLoaded);
-  video.addEventListener("canplay", handleLoaded);
-  video.addEventListener("pause", handlePause);
-  document.addEventListener("visibilitychange", handleVisibility);
-
-  playVideo();
-
-  const retryTimer = window.setInterval(playVideo, 3000);
-
-  return () => {
-    window.clearInterval(retryTimer);
-    video.removeEventListener("loadedmetadata", handleLoaded);
-    video.removeEventListener("loadeddata", handleLoaded);
-    video.removeEventListener("canplay", handleLoaded);
-    video.removeEventListener("pause", handlePause);
-    document.removeEventListener("visibilitychange", handleVisibility);
-  };
-}, []);
+    return () => {
+      window.clearInterval(retryTimer);
+      video.removeEventListener("loadedmetadata", handleLoaded);
+      video.removeEventListener("loadeddata", handleLoaded);
+      video.removeEventListener("canplay", handleLoaded);
+      video.removeEventListener("pause", handlePause);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
 
   return (
     <section
       className="
         relative
+        z-10
         flex
         min-h-[736px]
         w-full
-        items-center
-        justify-center
+        flex-col
+        justify-between
         overflow-hidden
         bg-[#0a0a0a]
-        px-6
-        py-20
+        pt-20
         text-center
-        max-[760px]:min-h-[500px]
-        max-[760px]:px-5
-        max-[760px]:py-16
+        max-[760px]:min-h-[540px]
+        max-[760px]:pt-14
       "
     >
       <video
@@ -96,50 +96,50 @@ function SiteCTA() {
         <source src={heroVideo} type="video/mp4" />
       </video>
 
-        {/* Main video blending layer */}
-<div
-  className="
-    pointer-events-none
-    absolute
-    inset-0
-    z-[1]
-    bg-[linear-gradient(180deg,rgba(8,9,9,0.92)_0%,rgba(8,9,9,0.68)_42%,rgba(5,16,15,0.42)_72%,rgba(4,10,9,0.78)_100%)]
-  "
-/>
+      {/* Main video blending layer */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[1]
+          bg-[linear-gradient(180deg,rgba(8,9,9,0.92)_0%,rgba(8,9,9,0.68)_42%,rgba(5,16,15,0.42)_72%,rgba(4,10,9,0.85)_100%)]
+        "
+      />
 
-{/* Top transition */}
-<div
-  className="
-    pointer-events-none
-    absolute
-    inset-x-0
-    top-0
-    z-[2]
-    h-[120px]
-    bg-gradient-to-b
-    from-[#0a0a0a]
-    via-[#0a0a0a]/70
-    to-transparent
-  "
-/>
+      {/* Top transition */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          top-0
+          z-[2]
+          h-[120px]
+          bg-gradient-to-b
+          from-[#0a0a0a]
+          via-[#0a0a0a]/70
+          to-transparent
+        "
+      />
 
-{/* Bottom transition into footer */}
-<div
-  className="
-    pointer-events-none
-    absolute
-    inset-x-0
-    bottom-0
-    z-[2]
-    h-[130px]
-    bg-gradient-to-t
-    from-[#0a0a0a]
-    via-[#0a0a0a]/65
-    to-transparent
-  "
-/>
+      {/* Bottom transition into footer */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          bottom-0
+          z-[2]
+          h-[140px]
+          bg-gradient-to-t
+          from-[#0a0a0a]
+          via-[#0a0a0a]/80
+          to-transparent
+        "
+      />
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 my-auto flex flex-col items-center px-6 py-12 max-[760px]:px-5">
         <h2
           className="
             m-0
@@ -211,6 +211,8 @@ function SiteCTA() {
           Book a call
         </a>
       </div>
+
+      <SiteFooter />
     </section>
   );
 }

@@ -12,6 +12,7 @@ const serviceLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header
       className="
@@ -20,19 +21,19 @@ export default function Navbar() {
         top-[42px]
         z-[1000]
         flex
-        h-[57px]
-        w-[421px]
+        h-[56.797px]
+        w-[420.578px]
         -translate-x-1/2
         items-center
         rounded-full
         border
         border-white/[0.10]
-        bg-[rgba(8,12,11,0.24)]
-        transition-colors
-        duration-200
+        bg-[rgba(13,13,13,0.5)]
         px-[24px]
         shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-        backdrop-blur-[16px]
+        backdrop-blur-[5px]
+        transition-colors
+        duration-200
         max-[1100px]:left-0
         max-[1100px]:top-[40px]
         max-[1100px]:h-[28px]
@@ -58,24 +59,76 @@ export default function Navbar() {
         />
       </a>
 
-      <nav className="ml-[16px] flex h-[33px] items-center gap-[2px] max-[1100px]:hidden">
+      <nav
+        className="
+          ml-[16px]
+          flex
+          h-[32.797px]
+          shrink-0
+          items-center
+          gap-[2px]
+          max-[1100px]:hidden
+        "
+      >
         <a
           href="/about"
-          className="inline-flex h-[33px] items-center rounded-full px-[14px] text-[13px] font-medium leading-[17px] text-white no-underline transition-colors duration-200 hover:bg-white/[0.07]"
+          className="
+            inline-flex
+            h-[32.797px]
+            shrink-0
+            items-center
+            whitespace-nowrap
+            rounded-[8px]
+            px-[14px]
+            text-[14px]
+            font-medium
+            leading-[17px]
+            tracking-[-0.28px]
+            text-[#fbfafc]
+            no-underline
+            transition-colors
+            duration-200
+            hover:bg-white/[0.07]
+          "
         >
           About
         </a>
 
-        <div className="group relative">
+        <div className="group relative shrink-0">
           <a
             href="/services"
-            className="inline-flex h-[33px] items-center gap-[6px] rounded-full px-[14px] text-[13px] font-medium leading-[17px] text-white no-underline transition-colors duration-200 hover:bg-white/[0.07]"
+            className="
+              inline-flex
+              h-[32.797px]
+              shrink-0
+              items-center
+              whitespace-nowrap
+              rounded-[8px]
+              px-[14px]
+              text-[14px]
+              font-medium
+              leading-[17px]
+              tracking-[-0.28px]
+              text-[#fbfafc]
+              no-underline
+              transition-colors
+              duration-200
+              hover:bg-white/[0.07]
+            "
           >
             Services
 
             <svg
               viewBox="0 0 16 16"
-              className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+              className="
+                ml-[4px]
+                h-4
+                w-4
+                shrink-0
+                transition-transform
+                duration-200
+                group-hover:rotate-180
+              "
               aria-hidden="true"
             >
               <path
@@ -119,7 +172,19 @@ export default function Navbar() {
               <a
                 key={service.label}
                 href={service.href}
-                className="block rounded-[8px] px-[12px] py-[10px] text-[13px] leading-[18px] text-white no-underline transition-colors duration-150 hover:bg-white/[0.08]"
+                className="
+                  block
+                  rounded-[8px]
+                  px-[12px]
+                  py-[10px]
+                  text-[13px]
+                  leading-[18px]
+                  text-white
+                  no-underline
+                  transition-colors
+                  duration-150
+                  hover:bg-white/[0.08]
+                "
               >
                 {service.label}
               </a>
@@ -129,7 +194,24 @@ export default function Navbar() {
 
         <a
           href="/contact"
-          className="inline-flex h-[33px] items-center rounded-full px-[14px] text-[13px] font-medium leading-[17px] text-white no-underline transition-colors duration-200 hover:bg-white/[0.07]"
+          className="
+            inline-flex
+            h-[32.797px]
+            shrink-0
+            items-center
+            whitespace-nowrap
+            rounded-[8px]
+            px-[14px]
+            text-[14px]
+            font-medium
+            leading-[17px]
+            tracking-[-0.28px]
+            text-[#fbfafc]
+            no-underline
+            transition-colors
+            duration-200
+            hover:bg-white/[0.07]
+          "
         >
           Contact Us
         </a>
@@ -141,13 +223,45 @@ export default function Navbar() {
         aria-expanded={menuOpen}
         aria-controls="mobile-navigation"
         onClick={() => setMenuOpen((open) => !open)}
-        className="ml-auto hidden h-[32px] w-[32px] items-center justify-center rounded-full text-white transition-colors duration-200 hover:bg-white/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/60 max-[1100px]:inline-flex"
+        className="
+          ml-auto
+          hidden
+          h-[32px]
+          w-[32px]
+          items-center
+          justify-center
+          rounded-full
+          text-white
+          transition-colors
+          duration-200
+          hover:bg-white/[0.07]
+          focus-visible:outline
+          focus-visible:outline-2
+          focus-visible:outline-white/60
+          max-[1100px]:inline-flex
+        "
       >
-        <svg viewBox="0 0 20 20" className="h-[32px] w-[32px]" aria-hidden="true">
+        <svg
+          viewBox="0 0 20 20"
+          className="h-[32px] w-[32px]"
+          aria-hidden="true"
+        >
           {menuOpen ? (
-            <path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
+            <path
+              d="m5 5 10 10M15 5 5 15"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="1.5"
+            />
           ) : (
-            <path d="M1 5h18M1 10h18M1 15h18" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.4" />
+            <path
+              d="M1 5h18M1 10h18M1 15h18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="1.4"
+            />
           )}
         </svg>
       </button>
@@ -156,7 +270,22 @@ export default function Navbar() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="absolute right-[24px] top-[calc(100%+12px)] flex w-[220px] flex-col rounded-[16px] border border-white/10 bg-[rgba(9,13,12,0.88)] p-2 shadow-[0_18px_45px_rgba(0,0,0,0.36)] backdrop-blur-[18px] min-[1101px]:hidden"
+          className="
+            absolute
+            right-[24px]
+            top-[calc(100%+12px)]
+            flex
+            w-[220px]
+            flex-col
+            rounded-[16px]
+            border
+            border-white/10
+            bg-[rgba(9,13,12,0.88)]
+            p-2
+            shadow-[0_18px_45px_rgba(0,0,0,0.36)]
+            backdrop-blur-[18px]
+            min-[1101px]:hidden
+          "
         >
           {[
             { label: "About", href: "/about" },
@@ -168,7 +297,17 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="rounded-[9px] px-3 py-[10px] text-[13px] leading-[18px] text-white transition-colors duration-150 hover:bg-white/[0.08]"
+              className="
+                rounded-[9px]
+                px-3
+                py-[10px]
+                text-[13px]
+                leading-[18px]
+                text-white
+                transition-colors
+                duration-150
+                hover:bg-white/[0.08]
+              "
             >
               {link.label}
             </a>

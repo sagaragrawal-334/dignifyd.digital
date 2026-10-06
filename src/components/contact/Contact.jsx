@@ -1,6 +1,5 @@
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
-import SiteFooter from "../shared/SiteFooter";
 
 import london from "../../assets/contact/London.svg";
 import illinois from "../../assets/contact/Illinois.svg";
@@ -530,8 +529,6 @@ function Contact() {
 
         <SiteCTA />
       </main>
-
-      <SiteFooter />
     </div>
   );
 }

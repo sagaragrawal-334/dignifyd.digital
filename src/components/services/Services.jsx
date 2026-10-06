@@ -1,6 +1,5 @@
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
-import SiteFooter from "../shared/SiteFooter";
 
 import creativeContent from "../../assets/services/Creative Content That Builds Brands.svg";
 import digitalMarketing from "../../assets/services/Digital Marketing That Drives Growth.svg";
@@ -38,35 +37,35 @@ const services = [
 
 function Services() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#080909] font-['Inter',sans-serif] text-[#fbfafc]">
+    <div className="services-page min-h-screen overflow-x-hidden bg-[#080909] font-['Satoshi',sans-serif] text-[#fbfafc]">
       <Navbar />
 
       <main>
-        <section className="px-6 pb-[69px] pt-[184px] max-[760px]:px-5 max-[760px]:pb-12 max-[760px]:pt-[132px]">
+        <section className="px-6 pb-[66px] pt-[157px] max-[760px]:px-6 max-[760px]:pb-12 max-[760px]:pt-[160px]">
           <div className="mx-auto w-full max-w-[1200px]">
             <div className="text-center">
-              <h1 className="mx-auto max-w-[810px] text-[70px] font-medium leading-[91px] tracking-[-3.5px] max-[1000px]:text-[56px] max-[1000px]:leading-[1.1] max-[760px]:text-[42px]">
+              <h1 className="mx-auto max-w-[810px] text-[70px] font-medium leading-[91px] tracking-[-3.5px] max-[1000px]:text-[56px] max-[1000px]:leading-[1.1] max-[760px]:max-w-[262px] max-[760px]:text-[54px] max-[760px]:leading-[64px]">
                 What we do,{" "}
-                <em className="font-['Baskerville',serif] font-normal italic tracking-normal">
+                <em className="font-['Instrument_Serif','Baskervville',serif] font-normal italic tracking-normal">
                   delivered well.
                 </em>
               </h1>
 
-              <p className="mx-auto mt-[23px] max-w-[807px] text-[20px] font-medium leading-[30px] tracking-[-0.4px] text-[#999] max-[760px]:text-[16px] max-[760px]:leading-[24px]">
+              <p className="mx-auto mt-[23px] max-w-[807px] text-[22px] font-medium leading-[32px] tracking-[-0.44px] text-[#999] max-[760px]:mt-[27px] max-[760px]:max-w-[262px] max-[760px]:text-[16px] max-[760px]:leading-[24px]">
                 Our services combine strategic thinking, thoughtful design, and
-                performance-driven execution to help brands build clarity,
+                performance-<br className="max-[760px]:hidden" />driven execution to help brands build clarity,
                 scale efficiently, and grow with purpose.
               </p>
             </div>
 
-            <div className="mt-[64px] grid grid-cols-2 gap-[10px] max-[760px]:mt-10 max-[760px]:grid-cols-1 max-[760px]:gap-[30px]">
+            <div className="mt-[64px] grid grid-cols-2 gap-x-[10px] gap-y-[14px] max-[760px]:mx-auto max-[760px]:mt-16 max-[760px]:grid-cols-1 max-[760px]:gap-[44px] max-[760px]:max-w-[310px] max-[760px]:px-6">
               {services.map((service) => (
                 <a
                   key={service.title}
                   href={service.href}
                   className="group block min-w-0 no-underline"
                 >
-                  <div className="h-[334.67px] overflow-hidden rounded-[12px] bg-[#111] max-[760px]:h-auto max-[760px]:aspect-[595/335]">
+                  <div className="aspect-[595/335] overflow-hidden rounded-[12px] bg-[#111]">
                     <img
                       src={service.image}
                       alt={service.title}
@@ -86,9 +85,17 @@ function Services() {
         <SiteCTA />
       </main>
 
-      <SiteFooter />
+      <style>{`
+        @media (min-width: 1101px) {
+          .services-page > header { top: 24px; width: 412px; height: 56px; }
+        }
+        .services-page {
+          background: linear-gradient(180deg, #003f38 0, #011b18 130px, #080909 320px) top / 100% 320px no-repeat, #080909;
+        }
+      `}</style>
     </div>
   );
 }
 
 export default Services;
+

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
-import SiteFooter from "../shared/SiteFooter";
 
 import heroVideo from "../../assets/hero-video.mp4";
 import logo from "../../assets/logo.png";
+import heroLogo from "../../assets/dignifyd logo.svg";
 import portrait from "../../assets/portrait.jpg";
 
 import brand1 from "../../assets/brand-01.png";
@@ -18,8 +18,8 @@ import gallery2 from "../../assets/gallery-02.jpeg";
 import gallery3 from "../../assets/gallery-03.png";
 import gallery4 from "../../assets/gallery-04.jpeg";
 import gallery5 from "../../assets/gallery-05.png";
-import gallery6 from "../../assets/gallery-06.png";
-import gallery7 from "../../assets/gallery-07.png";
+import gallery6 from "../../assets/gallery-06.svg";
+import gallery7 from "../../assets/gallery-07.svg";
 import gallery8 from "../../assets/gallery-08.jpeg";
 import gallery9 from "../../assets/gallery-09.jpeg";
 import gallery10 from "../../assets/gallery-10.jpeg";
@@ -604,13 +604,13 @@ export default function Home() {
                     />
                   </video>
 
-                  <div className="pointer-events-none absolute inset-0 bg-black/[0.06]" />
-
-                  <img
-                    src={logo}
-                    alt="Dignifyd"
-                    className="pointer-events-none absolute left-1/2 top-1/2 w-[437px] max-w-[55%] -translate-x-1/2 -translate-y-1/2 brightness-0 invert"
-                  />
+                  <div className="pointer-events-none absolute left-1/2 top-1/2 h-[130px] w-[556px] -translate-x-1/2 -translate-y-1/2">
+                    <img
+                    src={heroLogo}
+                    alt="Dignifyd Digital"
+                    className="block h-[130px] w-[556px] object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -883,7 +883,6 @@ export default function Home() {
         ========================================================= */}
 
         <SiteCTA />
-        <SiteFooter />
       </main>
 
       <style>{`
