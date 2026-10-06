@@ -86,9 +86,6 @@ function Services() {
       </main>
 
       <style>{`
-        @media (min-width: 1101px) {
-          .services-page > header { top: 24px; width: 412px; height: 56px; }
-        }
         .services-page {
           background: linear-gradient(180deg, #003f38 0, #011b18 130px, #080909 320px) top / 100% 320px no-repeat, #080909;
         }

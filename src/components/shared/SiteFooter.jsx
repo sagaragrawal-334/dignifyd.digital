@@ -6,6 +6,9 @@ function SiteFooter() {
       className="
         relative
         z-20
+        -mt-[87px]
+        flex
+        min-h-[87px]
         w-full
         bg-transparent
         text-[#999]
@@ -15,10 +18,9 @@ function SiteFooter() {
         className="
           mx-auto
           flex
-          min-h-[87px]
           w-full
           max-w-[1200px]
-          items-center
+          items-end
           justify-between
           px-6
           pb-[26px]
@@ -60,7 +62,7 @@ function SiteFooter() {
             href="/services"
             className="transition-colors duration-200 hover:text-[#fbfafc]"
           >
-            Services
+            Portfolio
           </a>
 
           <a

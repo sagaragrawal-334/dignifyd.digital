@@ -131,10 +131,10 @@ function SiteCTA() {
           inset-x-0
           bottom-0
           z-[2]
-          h-[140px]
+          h-[130px]
           bg-gradient-to-t
           from-[#0a0a0a]
-          via-[#0a0a0a]/80
+          via-[#0a0a0a]/65
           to-transparent
         "
       />

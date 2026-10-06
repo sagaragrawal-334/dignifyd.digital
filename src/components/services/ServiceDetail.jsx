@@ -155,7 +155,7 @@ function ContentGroup({ title, cards, image, imageHeight, italic = true, imageRi
                 <h3 className="text-[28px] font-medium leading-[36px] tracking-[-0.56px] max-[760px]:text-[22px]">
                   {heading}
                 </h3>
-                <p className="mt-4 text-[16px] leading-6 text-[#999]">{body}</p>
+                <p className="mt-4 text-[16px] leading-[24px] tracking-normal text-[#999]">{body}</p>
               </article>
             ))}
           </div>
@@ -195,7 +195,7 @@ function ServiceDetail({ path }) {
             <h1 className="mx-auto max-w-[736px] font-['Instrument_Serif','Baskervville',serif] text-[94px] font-normal italic leading-[1.2] max-[760px]:max-w-[262px] max-[760px]:text-[54px] max-[760px]:leading-[1.2]">
               {page.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-[1200px] text-[20px] font-medium leading-[30px] tracking-[-0.4px] text-[#999] max-[760px]:mt-[27px] max-[760px]:max-w-[262px] max-[760px]:text-[14px] max-[760px]:leading-[22px]">
+            <p className="mx-auto mt-6 max-w-[1200px] text-[20px] font-medium leading-[30px] tracking-[-0.2px] text-[#999] max-[760px]:mt-[27px] max-[760px]:max-w-[262px] max-[760px]:text-[14px] max-[760px]:leading-[22px]">
               {page.description}
             </p>
           </div>
@@ -214,7 +214,7 @@ function ServiceDetail({ path }) {
             <h2 className="font-['Instrument_Serif','Baskervville',serif] text-[36px] italic leading-[43px] max-[760px]:text-[30px]">
               {page.whyTitle ?? "Why it matters"}
             </h2>
-            <p className="mx-auto mt-6 max-w-[860px] text-[16px] leading-6 text-[#999]">
+            <p className="mx-auto mt-6 max-w-[860px] text-[16px] leading-[24px] tracking-normal text-[#999]">
               {page.why}
             </p>
           </div>
@@ -224,9 +224,6 @@ function ServiceDetail({ path }) {
       </main>
 
       <style>{`
-        @media (min-width: 1101px) {
-          .service-detail-page > header { top: 24px; width: 412px; height: 56px; }
-        }
         .service-detail-page {
           background: linear-gradient(180deg, #003f38 0, #011b18 130px, #080909 320px) top / 100% 320px no-repeat, #080909;
         }
