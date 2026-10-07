@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
+/* =========================
+   INTER
+   ========================= */
+
 @font-face {
   font-family: "Inter";
-  src: url("./assets/fonts/Instrument_Serif,Inter/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("./assets/fonts/Inter-4.1/InterVariable.ttf") format("truetype");
   font-weight: 100 900;
+  font-style: normal;
   font-display: swap;
 }
 
+/* =========================
+   INSTRUMENT SERIF
+   ========================= */
+
 @font-face {
   font-family: "Instrument Serif";
-  src: url("./assets/fonts/Instrument_Serif/InstrumentSerif-Regular.ttf") format("truetype");
+  src: url("./assets/fonts/Instrument_Serif/InstrumentSerif-Regular.ttf")
+    format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,15 +27,20 @@
 
 @font-face {
   font-family: "Instrument Serif";
-  src: url("./assets/fonts/Instrument_Serif/InstrumentSerif-Italic.ttf") format("truetype");
+  src: url("./assets/fonts/Instrument_Serif/InstrumentSerif-Italic.ttf")
+    format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
+/* =========================
+   BASKERVILLE
+   ========================= */
+
 @font-face {
   font-family: "Baskerville";
-  src: url("./assets/fonts/baskervville-regular.ttf") format("truetype");
+  src: url("./assets/fonts/baskerville-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -33,16 +48,21 @@
 
 @font-face {
   font-family: "Baskerville";
-  src: url("./assets/fonts/baskervville-italic.ttf") format("truetype");
+  src: url("./assets/fonts/baskerville-italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
+
+/* =========================
+   SATOSHI
+   ========================= */
 
 @font-face {
   font-family: "Satoshi";
   src: url("./assets/fonts/satoshi-medium.woff2") format("woff2");
   font-weight: 500;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -50,8 +70,13 @@
   font-family: "Satoshi";
   src: url("./assets/fonts/satoshi-bold.woff2") format("woff2");
   font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
+
+/* =========================
+   ROOT
+   ========================= */
 
 :root {
   font-family: "Inter", sans-serif;
@@ -62,6 +87,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* =========================
+   GLOBAL
+   ========================= */
 
 * {
   box-sizing: border-box;

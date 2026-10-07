@@ -2,104 +2,136 @@ import logo from "../../assets/logo.png";
 
 function SiteFooter() {
   return (
-    <footer
-      className="
-        relative
-        z-20
-        -mt-[87px]
-        flex
-        min-h-[87px]
-        w-full
-        bg-transparent
-        text-[#999]
-      "
-    >
-      <div
-        className="
-          mx-auto
-          flex
-          w-full
-          max-w-[1200px]
-          items-end
-          justify-between
-          px-6
-          pb-[26px]
-          pt-[26px]
-
-          max-[760px]:flex-col
-          max-[760px]:items-center
-          max-[760px]:justify-center
-          max-[760px]:gap-4
-          max-[760px]:px-5
-        "
-      >
-        <nav
-          className="
-            flex
-            gap-[22px]
-            text-sm
-
-            max-[760px]:gap-4
-            max-[760px]:text-xs
-          "
-          aria-label="Footer navigation"
-        >
-          <a
-            href="/"
-            className="transition-colors duration-200 hover:text-[#fbfafc]"
-          >
-            Home
-          </a>
-
-          <a
-            href="/about"
-            className="transition-colors duration-200 hover:text-[#fbfafc]"
-          >
-            About
-          </a>
-
-          <a
-            href="/services"
-            className="transition-colors duration-200 hover:text-[#fbfafc]"
-          >
-            Portfolio
-          </a>
-
-          <a
-            href="/contact"
-            className="transition-colors duration-200 hover:text-[#fbfafc]"
-          >
-            Contact Us
-          </a>
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <nav className="site-footer-nav" aria-label="Footer navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/services">Portfolio</a>
+          <a href="/contact">Contact Us</a>
         </nav>
 
-        <p
-          className="
-            m-0
-            flex
-            items-center
-            gap-[7px]
-            text-sm
-
-            max-[760px]:text-xs
-          "
-        >
-          Created by
+        <p className="site-footer-created">
+          <span>Created by</span>
 
           <img
             src={logo}
             alt="Dignifyd"
-            className="
-              block
-              w-[78px]
-              brightness-0
-              invert
-
-              max-[760px]:w-[60px]
-            "
           />
         </p>
       </div>
+
+      <style>{`
+        .site-footer {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 3;
+          width: 100%;
+          height: 224.62px;
+          background: transparent;
+          color: #999999;
+        }
+
+        .site-footer-inner {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 87px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          padding: 0 120px 32px;
+        }
+
+        .site-footer-nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 276.19px;
+          height: 17px;
+        }
+
+        .site-footer-nav a {
+          display: block;
+          margin: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: -0.28px;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: color 180ms ease;
+        }
+
+        .site-footer-nav a:hover {
+          color: #FBFAFC;
+        }
+
+        .site-footer-created {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          height: 23px;
+          margin: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 17px;
+          letter-spacing: -0.28px;
+          white-space: nowrap;
+        }
+
+        .site-footer-created img {
+          display: block;
+          width: 78px;
+          height: auto;
+          filter: brightness(0) invert(1);
+        }
+
+        @media (max-width: 900px) {
+          .site-footer {
+            height: 180px;
+          }
+
+          .site-footer-inner {
+            height: auto;
+            padding: 0 24px 24px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+          }
+
+          .site-footer-nav {
+            width: auto;
+            max-width: 100%;
+            height: 17px;
+            gap: 18px;
+          }
+
+          .site-footer-nav a {
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: -0.24px;
+          }
+
+          .site-footer-created {
+            font-size: 12px;
+            line-height: 15px;
+          }
+
+          .site-footer-created img {
+            width: 60px;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
