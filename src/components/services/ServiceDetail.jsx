@@ -1,28 +1,83 @@
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
 
-import creativeContent from "../../assets/services/Creative Content That Builds Brands.svg";
-import digitalMarketing from "../../assets/services/Digital Marketing That Drives Growth.svg";
-import brandStrategy from "../../assets/services/Building Brands With Clear Purpose.svg";
-import webDesign from "../../assets/services/Designing Websites That Perform.svg";
-import influencerMarketing from "../../assets/services/Influencer Marketing.svg";
+// Existing project assets are fallbacks only. The named exports are preferred
+// when present because they match the image sections shown in the Figma file.
+import creativeFallback from "../../assets/services/Creative Content That Builds Brands.svg";
+import digitalFallback from "../../assets/services/Digital Marketing That Drives Growth.svg";
+import brandFallback from "../../assets/services/Building Brands With Clear Purpose.svg";
+import webFallback from "../../assets/services/Designing Websites That Perform.svg";
+import influencerFallback from "../../assets/services/Influencer Marketing.svg";
 import gallery02 from "../../assets/gallery-02.jpeg";
 import gallery05 from "../../assets/gallery-05.png";
 import gallery06 from "../../assets/gallery-06.svg";
 import gallery09 from "../../assets/gallery-09.jpeg";
 
+// Resolve the image exports the user saved in src/assets by exact filename.
+// Keeping the fallbacks prevents a build failure if an export was renamed.
+const assetUrls = import.meta.glob("../../assets/**/*.{png,jpg,jpeg,svg,webp}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const normalizeAssetName = (value) =>
+  value.split("/").pop().replace(/[^a-z0-9]/gi, "").toLowerCase();
+
+function findAsset(names, fallback) {
+  const candidates = names.map(normalizeAssetName);
+  const entries = Object.entries(assetUrls);
+
+  for (const candidate of candidates) {
+    const found = entries.find(([path]) => normalizeAssetName(path) === candidate);
+    if (found) return found[1];
+  }
+
+  // Filename punctuation sometimes differs between local exports. Match only
+  // when one candidate's normalized basename is contained in the full basename.
+  for (const candidate of candidates) {
+    const found = entries.find(([path]) =>
+      normalizeAssetName(path).includes(candidate) || candidate.includes(normalizeAssetName(path)),
+    );
+    if (found) return found[1];
+  }
+
+  return fallback;
+}
+
+const serviceImages = {
+  brandWhatWeDo: findAsset(["What We Do.png"], brandFallback),
+  brandExpression: findAsset(["Brand Expression.png"], gallery06),
+  creativeStrategy: findAsset(["Creative Strategy & Execution.png"], creativeFallback),
+  creativeSystems: findAsset(["Creative Systems That Scale.png"], gallery02),
+  digitalStrategy: findAsset(
+    ["Performance Led Marketing Strategy.png", "Performance Led Marketing Strategy.jpg"],
+    digitalFallback,
+  ),
+  digitalOptimisation: findAsset(
+    ["Optimisation & Long Term Growth.png", "Optimisation & Long Term Growth.jpg"],
+    gallery06,
+  ),
+  webExperiences: findAsset(["Web Experiences Built With Purpose.png"], webFallback),
+  designSystems: findAsset(["Design Systems That Scale.png"], gallery09),
+  influencerWhatWeDo: findAsset(["What We Do.im.png", "What We Do im.png"], influencerFallback),
+  influencerPerformance: findAsset(["Execution & Performance.png"], gallery05),
+};
+
 const pages = {
   "/creative-and-content": {
+    pageClass: "creative-content",
     title: "Creative & Content That Connects",
+    titleLines: ["Creative &", "Content That", "Connects"],
     description:
-      "We craft compelling creative content that tells your brand story, captivates audiences, and drives engagement across digital platforms. From visual design to strategic storytelling, our approach blends creativity with purpose to make every piece of content meaningful and effective.",
-    image: creativeContent,
+      "We craft compelling creative content that tells your brand story, captivates audiences, and drives engagement across digital platforms. From visual design to strategic storytelling.",
+    descriptionHeight: 60,
+    imageOne: serviceImages.creativeStrategy,
+    imageTwo: serviceImages.creativeSystems,
+    imageOneHeight: 440.42,
+    imageTwoHeight: 440.42,
     groupOne: "Creative Strategy & Execution",
     groupTwo: "Creative Systems That Scale",
-    featureImageHeight: 464,
-    secondaryImageHeight: 440,
-    whyTitle: "Why Creative & Content Matters",
-    why: "Creative content isn’t just about looking good — it’s about communicating purposefully. The right creative strategy builds emotional connection, improves brand recall, and drives measurable engagement in today’s noisy digital landscape.",
     cardsOne: [
       ["Visual Storytelling", "We design eye-catching visuals — from graphics to videos — that communicate your message clearly and memorably."],
       ["Strategic Content Creation", "We produce written and multimedia content tailored to your audience — including social posts, blogs, website copy, and campaign materials — aligned with your goals."],
@@ -33,19 +88,25 @@ const pages = {
       ["Optimisation & Insights", "We leverage performance data to refine creative and content over time, ensuring better engagement and stronger results."],
       ["Multi-Format Content Delivery", "From static visuals and animations to long-form storytelling and short video clips — we support diverse formats based on your audience and channels."],
     ],
-    sideImage: gallery02,
+    whyTitle: "Why Creative & Content Matters",
+    why:
+      "Creative content isn’t just about looking good — it’s about communicating purposefully. The right creative strategy builds emotional connection, improves brand recall, and drives measurable engagement in today’s noisy digital landscape.",
+    whyTop: 1807.23,
+    canvasHeight: 2058.43,
   },
   "/digital-marketing": {
+    pageClass: "digital-marketing",
     title: "Digital Marketing That Drives Growth",
+    titleLines: ["Digital Marketing", "That Drives", "Growth"],
     description:
       "We plan, execute, and optimise digital marketing strategies using data, creativity, and technology — helping brands increase visibility, attract qualified leads, and achieve measurable business growth.",
-    image: digitalMarketing,
+    descriptionHeight: 60,
+    imageOne: serviceImages.digitalStrategy,
+    imageTwo: serviceImages.digitalOptimisation,
+    imageOneHeight: 440.42,
+    imageTwoHeight: 440.42,
     groupOne: "Performance Led Marketing Strategy",
     groupTwo: "Optimisation & Long Term Growth",
-    featureImageHeight: 440,
-    secondaryImageHeight: 464,
-    whyTitle: "Why Digital Marketing Matters",
-    why: "In today’s digital world, visibility and engagement are essential. Effective digital marketing helps you attract the right audience, build meaningful connections, and grow your business with measurable results and strategic insights.",
     cardsOne: [
       ["Audience Driven Targeting", "We identify and segment the right audiences using behavioural insights and data signals, ensuring campaigns reach users most likely to engage and convert."],
       ["Paid Media Campaigns", "From search to social and display, we design and optimise paid campaigns focused on relevance, performance and return on ad spend."],
@@ -56,19 +117,25 @@ const pages = {
       ["Analytics & Performance Tracking", "Using analytics and reporting tools, we measure campaign effectiveness, uncover optimisation opportunities and refine strategies for continued improvement."],
       ["Scalable Creative Growth", "Our marketing approach aligns your channels, budget, and goals, enabling sustainable growth and adaptability in competitive digital landscapes."],
     ],
-    sideImage: gallery05,
+    whyTitle: "Why Digital Marketing Matters",
+    why:
+      "In today’s digital world, visibility and engagement are essential. Effective digital marketing helps you attract the right audience, build meaningful connections, and grow your business with measurable results and strategic insights.",
+    whyTop: 1807.23,
+    canvasHeight: 2058.43,
   },
   "/brand-strategy": {
+    pageClass: "brand-strategy",
     title: "Building Brands With Clear Direction",
+    titleLines: ["Building Brands", "With Clear", "Direction"],
     description:
       "We help brands define who they are, what they stand for, and how they communicate. Our brand strategies bring clarity, consistency, and focus — so every touchpoint works toward long-term growth and recognition.",
-    image: brandStrategy,
+    descriptionHeight: 60,
+    imageOne: serviceImages.brandWhatWeDo,
+    imageTwo: serviceImages.brandExpression,
+    imageOneHeight: 440.42,
+    imageTwoHeight: 308.02,
     groupOne: "What We Do",
     groupTwo: "Brand Expression",
-    featureImageHeight: 440,
-    secondaryImageHeight: 308,
-    whyTitle: "Why Brand Strategy Matters",
-    why: "A strong brand strategy aligns perception with purpose. It builds trust, improves recall, and ensures your brand communicates with clarity at every stage of growth — not just today, but in the long run.",
     cardsOne: [
       ["Brand Discovery", "We understand your business, audience, and market to uncover insights that shape a strong and authentic brand foundation."],
       ["Brand Positioning", "We define what makes your brand different and why it matters — helping you stand out clearly in competitive markets."],
@@ -78,20 +145,25 @@ const pages = {
       ["Messaging & Voice", "We create clear messaging frameworks and brand voice guidelines to ensure consistency across all communication."],
       ["Visual Strategy Direction", "We define the visual direction that guides design decisions — ensuring your brand looks cohesive, confident, and recognizable everywhere."],
     ],
-    sideImage: gallery06,
+    whyTitle: "Why Brand Strategy Matters",
+    why:
+      "A strong brand strategy aligns perception with purpose. It builds trust, improves recall, and ensures your brand communicates with clarity at every stage of growth — not just today, but in the long run.",
+    whyTop: 1674.83,
+    canvasHeight: 1926.03,
   },
   "/web-and-ux-design": {
+    pageClass: "web-ux-design",
     title: "Designing Websites That Perform",
+    titleLines: ["Designing", "Websites That", "Perform"],
     description:
       "We craft purposeful digital experiences that are visually stunning, intuitively usable, and strategically built to help brands convert visitors into loyal customers. Combining research-driven UX, beautiful UI, and modern technologies, our designs don’t just look great — they perform.",
-    image: webDesign,
+    descriptionHeight: 90,
+    imageOne: serviceImages.webExperiences,
+    imageTwo: serviceImages.designSystems,
+    imageOneHeight: 608,
+    imageTwoHeight: 512,
     groupOne: "Web Experiences Built With Purpose",
     groupTwo: "Design Systems That Scale",
-    gridTitle: "What You Get With Our Web & UX Design Service",
-    featureImageHeight: 608,
-    secondaryImageHeight: 512,
-    whyTitle: "Why It Matters",
-    why: "A well-designed website is more than aesthetics — it’s an experience. Good design reduces frustration, simplifies decisions, and builds credibility. It turns first-time visitors into advocates and long-term users into loyal customers. With purposeful UX and thoughtful UI, we ensure your brand delivers impactful digital experiences that last.",
     cardsOne: [
       ["User-Centric Design Approach", "Your website should speak to your audience — not confuse them. Our UX methodology starts with understanding your users and shaping experiences that feel natural and effortless. By creating clear navigation, meaningful interactions, and accessible layouts across devices, we make digital experiences that engage, retain, and build trust."],
       ["Conversion-Focused UX Strategy", "Design for your business goals. Every layout choice we make aims to guide visitors toward action — whether it’s lead generation, sales, inquiry submissions, or deeper engagement. Through strategic user flows, visual hierarchy, and behaviour-driven layouts, we help your website become a growth engine."],
@@ -102,7 +174,8 @@ const pages = {
       ["Brand-Aligned Digital Interfaces", "Your visual identity should be unmistakable. We blend brand personality with usability, using purposeful typography, colour systems, spacing, and intuitive interaction elements — creating interfaces that feel like you."],
       ["Collaboration-Ready Design Delivery", "Design shouldn’t slow development. Our handoff includes detailed documentation, component specs, and asset organization that developers will appreciate — ensuring your vision transitions smoothly from design to launch."],
     ],
-    gridCards: [
+    extraTitle: "What You Get With Our Web & UX Design Service",
+    extraItems: [
       ["Discovery & Strategy", "We start by understanding your audience, goals, and brand to define the right UX direction."],
       ["Wireframes & Prototypes", "We create skeletal frameworks for all key pages that map user journeys for maximum clarity and efficiency."],
       ["UI Design & Visual Brand Language", "Your website’s look & feel is crafted with care — ensuring emotional impact without sacrificing clarity or usability."],
@@ -110,20 +183,25 @@ const pages = {
       ["UX Testing & Iteration", "Before launch, we test & refine based on real behaviour to make sure your users find what they need — quickly and successfully."],
       ["Developer-Ready Files", "We deliver organised, structured designs that make development faster and error-free."],
     ],
-    sideImage: gallery09,
+    whyTitle: "Why It Matters",
+    why:
+      "A well-designed website is more than aesthetics — it’s an experience. Good design reduces frustration, simplifies decisions, and builds credibility. It turns first-time visitors into advocates and long-term users into loyal customers. With purposeful UX and thoughtful UI, we ensure your brand delivers impactful digital experiences that last.",
+    whyTop: 2927.21,
+    canvasHeight: 3147.21,
   },
   "/influencer-marketing": {
+    pageClass: "influencer-marketing",
     title: "Influencer Marketing That Feels Authentic",
+    titleLines: ["Influencer", "Marketing That", "Feels Authentic"],
     description:
-      "We connect brands with the right creators to build trust, spark conversations, and drive real impact. Our influencer marketing strategies focus on authenticity, relevance, and measurable outcomes — not just reach.",
-    image: influencerMarketing,
+      "We connect brands with the right creators to build trust, spark conversations, and drive real impact. Our influencer marketing strategies focus on authenticity, relevance, and measurable outcomes.",
+    descriptionHeight: 60,
+    imageOne: serviceImages.influencerWhatWeDo,
+    imageTwo: serviceImages.influencerPerformance,
+    imageOneHeight: 440.42,
+    imageTwoHeight: 440.42,
     groupOne: "What We Do",
     groupTwo: "Execution & Performance",
-    featureImageHeight: 440,
-    secondaryImageHeight: 440,
-    groupHeadingItalic: false,
-    whyTitle: "Why Influencer Marketing Matters",
-    why: "Influencers build trust where ads often can’t. When done right, influencer marketing humanises your brand, strengthens credibility, and drives real engagement through voices your audience already believes in.",
     cardsOne: [
       ["Creator Discovery & Selection", "We identify influencers who genuinely align with your brand values, audience, and objectives — ensuring credibility and meaningful engagement."],
       ["Campaign Strategy & Planning", "From product launches to awareness and performance-led campaigns, we design influencer strategies tailored to your goals and platforms."],
@@ -134,98 +212,763 @@ const pages = {
       ["Multi-Platform Activation", "We activate campaigns across Instagram, YouTube, short-form video platforms, and emerging channels based on audience behaviour."],
       ["Tracking & Reporting", "We track reach, engagement, and impact to evaluate performance and optimise future campaigns."],
     ],
-    sideImage: gallery05,
+    whyTitle: "Why Influencer Marketing Matters",
+    why:
+      "Influencers build trust where ads often can’t. When done right, influencer marketing humanises your brand, strengthens credibility, and drives real engagement through voices your audience already believes in.",
+    whyTop: 1807.23,
+    canvasHeight: 2058.43,
   },
 };
 
-function ContentGroup({ title, cards, image, imageHeight, italic = true, imageRight = false }) {
-  if (image) {
-    return (
-      <section className={`mx-auto grid w-full max-w-[1248px] grid-cols-2 items-start gap-16 px-6 ${imageRight ? "pb-[92px]" : "pb-[129px]"} max-[900px]:grid-cols-1 max-[760px]:px-6`}>
-        <div className={`h-[var(--feature-height)] overflow-hidden rounded-[12px] max-[900px]:aspect-[8/5] max-[900px]:h-auto ${imageRight ? "order-2 max-[900px]:order-1" : "order-1"}`} style={{ "--feature-height": `${imageHeight}px` }}>
-          <img src={image} alt="" className="h-full w-full object-cover" />
-        </div>
-        <div className={imageRight ? "order-1 max-[900px]:order-2" : "order-2"}>
-          <h2 className={`font-['Instrument_Serif','Baskervville',serif] text-[34px] font-normal leading-[43px] tracking-[-0.7px] max-[760px]:text-[36px] ${italic ? "italic" : ""}`}>
-            {title}
-          </h2>
-          <div className="mt-8 space-y-8">
-            {cards.map(([heading, body]) => (
-              <article key={heading}>
-                <h3 className="text-[28px] font-medium leading-[36px] tracking-[-0.56px] max-[760px]:text-[22px]">
-                  {heading}
-                </h3>
-                <p className="mt-4 text-[16px] leading-[24px] tracking-normal text-[#999]">{body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="mx-auto w-full max-w-[1200px] px-6 py-[92px] max-[760px]:px-5 max-[760px]:py-16">
-      <div className="mb-[46px] flex items-end justify-between gap-8 max-[760px]:mb-8 max-[760px]:block">
-        <h2 className="max-w-[720px] text-[48px] font-medium leading-[1.1] tracking-[-2px] max-[760px]:text-[32px] max-[760px]:tracking-[-1px]">
-          {title}
-        </h2>
-      </div>
-      <div className="grid grid-cols-3 gap-[16px] max-[900px]:grid-cols-2 max-[600px]:grid-cols-1">
-        {cards.map(([heading, body]) => (
-          <article key={heading} className="rounded-[16px] border border-white/10 bg-[#0d0d0d] p-[28px] max-[760px]:p-6">
-            <h3 className="text-[20px] font-medium leading-[26px] tracking-[-0.4px]">{heading}</h3>
-            <p className="mt-4 text-[15px] leading-[23px] text-[#999]">{body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
+function DetailCards({ cards, topPositions, bodyHeights = [] }) {
+  return cards.map(([heading, body], index) => (
+    <article
+      key={heading}
+      className="service-detail-card"
+      style={{ top: `${topPositions[index]}px` }}
+    >
+      <h3>{heading}</h3>
+      <p style={{ height: `${bodyHeights[index] ?? 48}px` }}>{body}</p>
+    </article>
+  ));
 }
 
 function ServiceDetail({ path }) {
   const page = pages[path] ?? pages["/creative-and-content"];
+  const isWebUx = path === "/web-and-ux-design";
+  const rowOneTops = isWebUx ? [75.2, 275.2, 475.2] : [75.2, 207.61, 340.02];
+  const rowTwoTops = isWebUx ? [75.2, 227.2, 379.2] : [75.2, 207.61, 340.02];
+  const rowOneBodyHeights = isWebUx ? [72, 72, 72] : [48, 48, 48];
+  const rowTwoBodyHeights = isWebUx ? [72, 48, 48] : [48, 48, 48];
+  const rowTwoTop = isWebUx ? 1286.39 : 1118.81;
 
   return (
-    <div className="service-detail-page min-h-screen overflow-x-clip bg-[#080909] font-['Satoshi',Arial,sans-serif] text-[#fbfafc]">
+    <div className={`service-detail-page ${page.pageClass}`}>
       <Navbar />
+
       <main>
-        <section className="px-6 pb-[128px] pt-[160px] text-center max-[760px]:px-6 max-[760px]:pb-16 max-[760px]:pt-[160px]">
-          <div className="mx-auto max-w-[1200px]">
-            <h1 className="mx-auto max-w-[736px] font-['Instrument_Serif','Baskervville',serif] text-[94px] font-normal italic leading-[1.2] max-[760px]:max-w-[262px] max-[760px]:text-[54px] max-[760px]:leading-[1.2]">
-              {page.title}
+        <div className="service-detail-canvas" style={{ height: `${page.canvasHeight}px` }}>
+          <div className="service-content-parent">
+            <h1 className="service-detail-hero-title">
+              {page.titleLines.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
             </h1>
-            <p className="mx-auto mt-6 max-w-[1200px] text-[20px] font-medium leading-[30px] tracking-[-0.2px] text-[#999] max-[760px]:mt-[27px] max-[760px]:max-w-[262px] max-[760px]:text-[14px] max-[760px]:leading-[22px]">
+
+            <p
+              className={`service-detail-hero-description ${isWebUx ? "is-three-lines" : ""}`}
+              style={{ height: `${page.descriptionHeight}px` }}
+            >
               {page.description}
             </p>
+
+            <section className={`service-detail-row service-detail-row-one ${isWebUx ? "is-web-ux-row-one" : ""}`}>
+              <div
+                className="service-detail-image service-detail-image-one"
+                style={{ height: `${page.imageOneHeight}px` }}
+              >
+                <img src={page.imageOne} alt="" />
+              </div>
+
+              <div className="service-detail-text service-detail-text-one">
+                <h2 className="service-detail-section-heading">{page.groupOne}</h2>
+                <DetailCards
+                  cards={page.cardsOne}
+                  topPositions={rowOneTops}
+                  bodyHeights={rowOneBodyHeights}
+                />
+              </div>
+            </section>
+
+            <section className={`service-detail-row service-detail-row-two ${isWebUx ? "is-web-ux-row-two" : ""}`} style={{ top: `${rowTwoTop}px` }}>
+              <div
+                className="service-detail-image service-detail-image-two"
+                style={{ height: `${page.imageTwoHeight}px` }}
+              >
+                <img src={page.imageTwo} alt="" />
+              </div>
+
+              <div className="service-detail-text service-detail-text-two">
+                <h2 className="service-detail-section-heading">{page.groupTwo}</h2>
+                <DetailCards
+                  cards={page.cardsTwo}
+                  topPositions={rowTwoTops}
+                  bodyHeights={rowTwoBodyHeights}
+                />
+              </div>
+            </section>
           </div>
-        </section>
 
-        <ContentGroup title={page.groupOne} cards={page.cardsOne} image={page.sideImage} imageHeight={page.featureImageHeight} italic={page.groupHeadingItalic} />
+          {isWebUx && (
+            <section className="service-detail-extra-list">
+              <h2>{page.extraTitle}</h2>
+              {page.extraItems.map(([heading, body], index) => (
+                <article
+                  className="service-detail-extra-item"
+                  key={heading}
+                  style={{ top: `${54.41 + index * 112}px` }}
+                >
+                  <h3>{heading}</h3>
+                  <p>{body}</p>
+                </article>
+              ))}
+            </section>
+          )}
 
-        <ContentGroup title={page.groupTwo} cards={page.cardsTwo} image={page.image} imageHeight={page.secondaryImageHeight} imageRight />
-
-        {page.gridCards && page.gridTitle && (
-          <ContentGroup title={page.gridTitle} cards={page.gridCards} />
-        )}
-
-        <section className="mx-auto w-full max-w-[1000px] px-6 pb-[120px] pt-[36px] text-center max-[760px]:px-5 max-[760px]:pb-20">
-          <div>
-            <h2 className="font-['Instrument_Serif','Baskervville',serif] text-[36px] italic leading-[43px] max-[760px]:text-[30px]">
-              {page.whyTitle ?? "Why it matters"}
-            </h2>
-            <p className="mx-auto mt-6 max-w-[860px] text-[16px] leading-[24px] tracking-normal text-[#999]">
-              {page.why}
-            </p>
-          </div>
-        </section>
+          <section className={`service-detail-why ${isWebUx ? "service-detail-why-web-ux" : ""}`} style={{ top: `${page.whyTop}px` }}>
+            <div className="service-detail-why-inner">
+              <h2>{page.whyTitle}</h2>
+              <p>{page.why}</p>
+            </div>
+          </section>
+        </div>
 
         <SiteCTA />
       </main>
 
       <style>{`
         .service-detail-page {
-          background: linear-gradient(180deg, #003f38 0, #011b18 130px, #080909 320px) top / 100% 320px no-repeat, #080909;
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          overflow-x: clip;
+          background: #0a0a0a;
+          color: #fbfafc;
+          font-family: "Inter", Arial, sans-serif;
+          isolation: isolate;
+        }
+
+        .service-detail-page > header {
+          top: 42px !important;
+        }
+
+        .service-detail-page > main {
+          position: relative;
+          width: 100%;
+          z-index: 1;
+        }
+
+        .service-detail-canvas {
+          position: relative;
+          width: 1440px;
+          max-width: 100%;
+          margin: 0 auto;
+          overflow: visible;
+          background: #0a0a0a;
+          isolation: isolate;
+        }
+
+        /* Figma Ellipse 2 properties: 1480 × 1016, left -20, top -698, blur 150. */
+        .service-detail-canvas::before {
+          content: "";
+          position: absolute;
+          z-index: 0;
+          pointer-events: none;
+          top: -698px;
+          left: -20px;
+          width: 1480px;
+          height: 1016px;
+          border-radius: 50%;
+          background: linear-gradient(90deg, #012a2c 0%, #008a89 100%);
+          filter: blur(150px);
+        }
+
+        .service-content-parent {
+          position: absolute;
+          z-index: 1;
+          top: 184px;
+          left: 120px;
+          width: 1200px;
+          height: 1426.83px;
+        }
+
+        /* Figma title: 736 × 339, left 232, top -5, Baskerville 94/112.8 italic. */
+        .service-detail-hero-title {
+          position: absolute;
+          top: -5px;
+          left: 232px;
+          width: 736px;
+          height: 339px;
+          margin: 0;
+          padding: 0;
+          color: #fbfafc;
+          font-family: "Baskerville", serif;
+          font-size: 94px;
+          font-weight: 400;
+          font-style: italic;
+          line-height: 112.8px;
+          letter-spacing: 0;
+          text-align: center;
+        }
+
+        .service-detail-hero-title span {
+          display: block;
+          height: 112.8px;
+          white-space: nowrap;
+        }
+
+        /* Figma description: 837 × 60, left 182, top 364, Inter 500 20/30/-0.4. */
+        .service-detail-hero-description {
+          position: absolute;
+          top: 364px;
+          left: 182px;
+          width: 837px;
+          margin: 0;
+          padding: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 30px;
+          letter-spacing: -0.4px;
+          text-align: center;
+        }
+
+        .service-detail-hero-description.is-three-lines {
+          height: 90px;
+        }
+
+        .service-detail-row {
+          position: absolute;
+          left: 0;
+          width: 1200px;
+          height: 440.42px;
+        }
+
+        .service-detail-row-one {
+          top: 550.39px;
+        }
+
+        .service-detail-row-two {
+          top: 1118.81px;
+        }
+
+        .service-detail-image,
+        .service-detail-text {
+          position: absolute;
+          top: 0;
+          width: 568px;
+        }
+
+        .service-detail-image {
+          overflow: hidden;
+          border-radius: 12px;
+          background: #0a0a0a;
+        }
+
+        .service-detail-image img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .service-detail-image-one {
+          left: 0;
+        }
+
+        .service-detail-image-two {
+          left: 632px;
+        }
+
+        .service-detail-text-one {
+          left: 632px;
+          height: 608px;
+        }
+
+        .service-detail-text-two {
+          left: 0;
+          height: 512px;
+        }
+
+        .service-detail-section-heading {
+          position: absolute;
+          top: -2px;
+          left: 0;
+          width: 568px;
+          height: 47px;
+          margin: 0;
+          padding: 0;
+          color: #fbfafc;
+          font-family: "Baskerville", serif;
+          font-size: 36px;
+          font-weight: 400;
+          font-style: italic;
+          line-height: 47px;
+          letter-spacing: 0;
+          white-space: nowrap;
+        }
+
+        .service-detail-card {
+          position: absolute;
+          left: 0;
+          width: 568px;
+          height: 100.41px;
+          margin: 0;
+          padding: 0;
+        }
+
+        .service-detail-card h3 {
+          width: max-content;
+          max-width: 568px;
+          height: 35px;
+          margin: 0;
+          padding: 0;
+          color: #fbfafc;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 35px;
+          letter-spacing: -0.56px;
+          white-space: nowrap;
+        }
+
+        .service-detail-card p {
+          position: absolute;
+          top: 54.41px;
+          left: 0;
+          width: 568px;
+          margin: 0;
+          padding: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: -0.32px;
+          overflow: hidden;
+        }
+
+        .service-detail-row-one.is-web-ux-row-one {
+          height: 608px;
+        }
+
+        .service-detail-row-one.is-web-ux-row-one .service-detail-text-one {
+          height: 608px;
+        }
+
+        .service-detail-row-two.is-web-ux-row-two {
+          height: 512px;
+        }
+
+        .service-detail-row-two.is-web-ux-row-two .service-detail-text-two {
+          height: 512px;
+        }
+
+        /* UI/UX cards have longer copy; these frames are deliberately taller. */
+        .web-ux-design .service-detail-row-one .service-detail-card {
+          height: 172px;
+        }
+
+        .web-ux-design .service-detail-row-one .service-detail-card p {
+          height: 72px;
+        }
+
+        .web-ux-design .service-detail-row-two .service-detail-card {
+          height: 152px;
+        }
+
+        .web-ux-design .service-detail-row-two .service-detail-card p {
+          height: 48px;
+        }
+
+        .web-ux-design .service-detail-row-two .service-detail-card:first-of-type p {
+          height: 72px;
+        }
+
+        .service-detail-extra-list {
+          position: absolute;
+          z-index: 1;
+          top: 2110.39px;
+          left: 120px;
+          width: 1200px;
+          height: 690px;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+        }
+
+        /* Figma list heading: 786 × 47, left 208.5, top -2, Baskerville 36/47 italic. */
+        .service-detail-extra-list > h2 {
+          position: absolute;
+          top: -2px;
+          left: 208.5px;
+          width: 786px;
+          height: 47px;
+          margin: 0;
+          padding: 0;
+          color: #ffffff;
+          font-family: "Baskerville", serif;
+          font-size: 36px;
+          font-weight: 400;
+          font-style: italic;
+          line-height: 47px;
+          letter-spacing: 0;
+          white-space: nowrap;
+        }
+
+        .service-detail-extra-item {
+          position: absolute;
+          left: 0;
+          width: 1200px;
+          height: 80px;
+          margin: 0;
+          padding: 0;
+        }
+
+        .service-detail-extra-item h3 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 1200px;
+          height: 35px;
+          margin: 0;
+          padding: 0;
+          color: #fbfafc;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 35px;
+          letter-spacing: -0.56px;
+          text-align: center;
+        }
+
+        /* Figma list-description frames: 900 × 20, left 150, top 54.41. */
+        .service-detail-extra-item p {
+          position: absolute;
+          top: 54.41px;
+          left: 150px;
+          width: 900px;
+          height: 20px;
+          margin: 0;
+          padding: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 20px;
+          letter-spacing: -0.32px;
+          text-align: center;
+        }
+
+        .service-detail-why {
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          width: 1440px;
+          height: 251.2px;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background: #0a0a0a;
+          /* Figma properties: X 0, Y 32, Blur 64, Spread 24, color #0A0A0A. */
+          box-shadow: 0 32px 64px 24px #0a0a0a;
+        }
+
+        .service-detail-why-inner {
+          position: absolute;
+          top: 64px;
+          left: 120px;
+          width: 1200px;
+          height: 123.2px;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+        }
+
+        .service-detail-why-inner h2 {
+          position: absolute;
+          top: -2px;
+          left: 0;
+          width: 1200px;
+          height: 47px;
+          margin: 0;
+          padding: 0;
+          color: #ffffff;
+          font-family: "Baskerville", serif;
+          font-size: 36px;
+          font-weight: 400;
+          font-style: italic;
+          line-height: 47px;
+          letter-spacing: 0;
+          text-align: center;
+        }
+
+        .service-detail-why-inner p {
+          position: absolute;
+          top: 54.41px;
+          left: 150px;
+          width: 900px;
+          height: 48px;
+          margin: 0;
+          padding: 0;
+          color: #999999;
+          font-family: "Inter", Arial, sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: -0.32px;
+          text-align: center;
+        }
+
+        .service-detail-why-web-ux {
+          height: 220px;
+          box-shadow: none;
+          background: #0a0a0a;
+        }
+
+        .service-detail-why-web-ux .service-detail-why-inner {
+          top: 0;
+          height: 147.2px;
+        }
+
+        .service-detail-why-web-ux .service-detail-why-inner p {
+          top: 75.2px;
+          height: 72px;
+        }
+
+        @media (min-width: 901px) and (max-width: 1439px) {
+          .service-detail-canvas {
+            width: 1440px;
+            max-width: none;
+            margin-left: calc((100vw - 1440px) / 2);
+          }
+        }
+
+        @media (max-width: 900px) {
+          .service-detail-page > header {
+            top: 20px !important;
+          }
+
+          .service-detail-canvas {
+            width: 100%;
+            height: auto !important;
+            padding: 150px 24px 64px;
+            overflow: hidden;
+          }
+
+          .service-detail-canvas::before {
+            top: -320px;
+            left: 50%;
+            width: 1000px;
+            height: 700px;
+            transform: translateX(-50%);
+          }
+
+          .service-content-parent {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+          }
+
+          .service-detail-hero-title {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            font-size: 54px;
+            line-height: 64px;
+          }
+
+          .service-detail-hero-title span {
+            height: 64px;
+            white-space: normal;
+          }
+
+          .service-detail-hero-description,
+          .service-detail-hero-description.is-three-lines {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto !important;
+            margin-top: 28px;
+            font-size: 14px;
+            line-height: 22px;
+          }
+
+          .service-detail-row,
+          .service-detail-row-one,
+          .service-detail-row-two {
+            position: relative;
+            top: auto !important;
+            left: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            width: 100%;
+            height: auto !important;
+            margin-top: 64px;
+          }
+
+          .service-detail-row-two {
+            flex-direction: column-reverse;
+          }
+
+          .service-detail-image,
+          .service-detail-image-one,
+          .service-detail-image-two {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto !important;
+            aspect-ratio: 568 / 440.42;
+          }
+
+          .web-ux-design .service-detail-image-one {
+            aspect-ratio: 568 / 608;
+          }
+
+          .web-ux-design .service-detail-image-two {
+            aspect-ratio: 568 / 512;
+          }
+
+          .service-detail-text,
+          .service-detail-text-one,
+          .service-detail-text-two {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+          }
+
+          .service-detail-section-heading {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            white-space: normal;
+          }
+
+          .service-detail-card,
+          .web-ux-design .service-detail-row-one .service-detail-card,
+          .web-ux-design .service-detail-row-two .service-detail-card {
+            position: relative;
+            top: auto !important;
+            left: auto;
+            width: 100%;
+            height: auto;
+            margin-top: 28px;
+          }
+
+          .service-detail-card h3 {
+            width: 100%;
+            height: auto;
+            white-space: normal;
+            font-size: 22px;
+            line-height: 29px;
+          }
+
+          .service-detail-card p,
+          .web-ux-design .service-detail-row-one .service-detail-card p,
+          .web-ux-design .service-detail-row-two .service-detail-card p {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto !important;
+            margin-top: 12px;
+            font-size: 15px;
+            line-height: 23px;
+          }
+
+          .service-detail-extra-list {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            margin-top: 72px;
+          }
+
+          .service-detail-extra-list > h2 {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            font-size: 30px;
+            line-height: 40px;
+            white-space: normal;
+          }
+
+          .service-detail-extra-item {
+            position: relative;
+            top: auto !important;
+            left: auto;
+            width: 100%;
+            height: auto;
+            margin-top: 28px;
+          }
+
+          .service-detail-extra-item h3 {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            font-size: 22px;
+            line-height: 29px;
+          }
+
+          .service-detail-extra-item p {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 21px;
+          }
+
+          .service-detail-why,
+          .service-detail-why-web-ux {
+            position: relative;
+            top: auto !important;
+            left: -24px;
+            width: calc(100% + 48px);
+            height: auto;
+            min-height: 210px;
+            margin-top: 72px;
+          }
+
+          .service-detail-why-inner {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            padding: 48px 24px;
+          }
+
+          .service-detail-why-inner h2 {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            font-size: 32px;
+            line-height: 40px;
+          }
+
+          .service-detail-why-inner p,
+          .service-detail-why-web-ux .service-detail-why-inner p {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            height: auto;
+            margin-top: 14px;
+            font-size: 14px;
+            line-height: 22px;
+          }
         }
       `}</style>
     </div>
@@ -233,4 +976,3 @@ function ServiceDetail({ path }) {
 }
 
 export default ServiceDetail;
-

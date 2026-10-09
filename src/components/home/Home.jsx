@@ -3,7 +3,6 @@ import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
 
 import heroVideo from "../../assets/hero-video.mp4";
-import logo from "../../assets/logo.png";
 import heroLogo from "../../assets/dignifyd logo.svg";
 import portrait from "../../assets/portrait.jpg";
 
@@ -47,7 +46,7 @@ const approach = [
         height="32"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#00bdb5"
+        stroke="#fbfafc"
         strokeWidth="1.5"
         aria-hidden="true"
       >
@@ -65,7 +64,7 @@ const approach = [
         height="32"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#00bdb5"
+        stroke="#fbfafc"
         strokeWidth="1.5"
         aria-hidden="true"
       >
@@ -86,7 +85,7 @@ const approach = [
         height="32"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#00bdb5"
+        stroke="#fbfafc"
         strokeWidth="1.5"
         aria-hidden="true"
       >
@@ -276,14 +275,14 @@ function BrandRail() {
   ];
 
   return (
-    <section className="h-[189px] overflow-hidden bg-[#0a0a0a]">
+    <section className="h-[215px] overflow-hidden bg-[#0a0a0a]">
       <div className="mx-auto flex h-full w-[1200px] max-w-[calc(100vw-32px)] flex-col items-center">
         <p className="mt-[1px] text-center text-[16px] font-medium leading-[20px] tracking-[-0.32px] text-[#999]">
           Trusted by global brands across lifestyle, SaaS, fintech &amp;
           enterprise
         </p>
 
-        <div className="relative mt-[49px] h-[55px] w-full overflow-hidden">
+        <div className="relative mt-[49.41px] h-[55px] w-full overflow-hidden">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[180px] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent" />
 
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[180px] bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent" />
@@ -346,11 +345,11 @@ function WorkRail({ images, initialX, top }) {
       }`}
       style={{ top }}
     >
-      <div className="relative h-[424px] overflow-hidden">
-        <div className="absolute left-[-40px] top-0 origin-top-left rotate-[4deg]">
+      <div className="relative h-[424px] overflow-visible">
+        <div className="absolute left-[55.75px] top-[2.16px] h-[300px] w-[1792px] origin-top-left rotate-[-3.98deg]">
           <div
             ref={trackRef}
-            className="flex w-max items-start gap-[8px]"
+            className="flex h-[300px] w-max items-center gap-[8px]"
           >
             {repeated.map((image, index) => (
               <div
@@ -427,7 +426,7 @@ function ServiceMarquee() {
     ));
 
   return (
-    <div className="relative mt-[48px] overflow-hidden">
+    <div className="relative mx-auto mt-[48px] w-[1072px] max-w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[150px] bg-gradient-to-r from-black via-black/80 to-transparent" />
 
       <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[150px] bg-gradient-to-l from-black via-black/80 to-transparent" />
@@ -454,81 +453,8 @@ function ServiceMarquee() {
 }
 
 export default function Home() {
-  const heroSectionRef = useRef(null);
-  const heroContentRef = useRef(null);
-  const heroVideoStageRef = useRef(null);
-
-  useEffect(() => {
-    let frame = 0;
-
-    const clamp = (value, min, max) =>
-      Math.min(Math.max(value, min), max);
-
-    const updateHeroScroll = () => {
-      cancelAnimationFrame(frame);
-
-      frame = requestAnimationFrame(() => {
-        const section = heroSectionRef.current;
-
-        if (!section) return;
-
-        const rect = section.getBoundingClientRect();
-
-        /*
-          The video should be the main moving element.
-          The hero text/buttons stay visually stable.
-        */
-        const raw = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : clamp(
-          -rect.top / 1050,
-          0,
-          1,
-        );
-
-        const progress = raw;
-
-        if (heroVideoStageRef.current) {
-        heroVideoStageRef.current.style.transform =
-        `translate3d(0, ${-progress * 330}px, 0)`;
-        }
-
-        if (heroContentRef.current) {
-          heroContentRef.current.style.transform =
-          "translate3d(0, 0, 0)";
-          heroContentRef.current.style.opacity = "1";
-        }
-      });
-    };
-
-    window.addEventListener(
-      "scroll",
-      updateHeroScroll,
-      { passive: true },
-    );
-
-    window.addEventListener(
-      "resize",
-      updateHeroScroll,
-    );
-
-    updateHeroScroll();
-
-    return () => {
-      window.removeEventListener(
-        "scroll",
-        updateHeroScroll,
-      );
-
-      window.removeEventListener(
-        "resize",
-        updateHeroScroll,
-      );
-
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#0a0a0a] font-['Inter',sans-serif] text-[#fbfafc]">
+    <div className="min-h-screen overflow-x-clip bg-[#0a0a0a] font-['Inter',sans-serif] text-[#fbfafc]">
       <Navbar />
 
       <main>
@@ -537,20 +463,18 @@ export default function Home() {
         ========================================================= */}
 
         <section
-          ref={heroSectionRef}
           className="relative h-[1351px] bg-[#0c0c0c] max-[1100px]:h-[1397px] max-[800px]:h-[1078px] max-[760px]:h-[1029px]"
         >
           <div className="sticky top-0 z-10 h-[645px]">
             <div className="absolute left-1/2 top-0 w-full -translate-x-1/2">
               <div
-                ref={heroContentRef}
-                className="relative w-full will-change-transform"
+                className="relative w-full"
               >
                 <div className="absolute left-1/2 top-[153px] w-[1200px] -translate-x-1/2 text-center max-[1100px]:top-[96px] max-[1000px]:w-[calc(100vw-32px)] max-[800px]:top-[120px] max-[800px]:w-[calc(100%-48px)] max-[760px]:top-[85px]">
-                  <h1 className="mx-auto w-[740px] max-w-full text-[91px] font-medium leading-[118px] tracking-[-4.55px] text-[#fbfafc] max-[1100px]:w-[658px] max-[1100px]:text-[80px] max-[1100px]:leading-[1.1] max-[1000px]:tracking-[-4px] max-[800px]:w-full max-[800px]:text-[68px] max-[800px]:leading-[1.08] max-[800px]:tracking-[-3.4px] max-[760px]:max-w-[220px] max-[760px]:text-[42px] max-[760px]:leading-[2] max-[760px]:tracking-[-2.1px]">
+                  <h1 className="mx-auto h-[229px] w-[740px] max-w-full text-[91px] font-medium leading-[118px] tracking-[-4.55px] text-[#fbfafc] max-[1100px]:h-auto max-[1100px]:w-[658px] max-[1100px]:text-[80px] max-[1100px]:leading-[1.1] max-[1000px]:tracking-[-4px] max-[800px]:w-full max-[800px]:text-[68px] max-[800px]:leading-[1.08] max-[800px]:tracking-[-3.4px] max-[760px]:max-w-[220px] max-[760px]:text-[42px] max-[760px]:leading-[2] max-[760px]:tracking-[-2.1px]">
                     <span className="font-['Baskerville'] font-normal italic tracking-normal">
                       Digital
-                    </span>{" "}
+                    </span><span className="font-['Instrument_Serif'] font-normal not-italic tracking-normal"> </span>
                     <br className="hidden max-[1100px]:inline max-[800px]:hidden" />
                     <span>Execution,</span>
                     <br />
@@ -585,11 +509,10 @@ export default function Home() {
 
           <div className="absolute left-1/2 top-[645px] z-20 h-[667px] w-full -translate-x-1/2 overflow-visible max-[1200px]:top-[605px] max-[800px]:top-[491px] max-[760px]:top-[689px] max-[760px]:h-[300px]">
             <div
-              ref={heroVideoStageRef}
-              className="relative h-full w-full will-change-transform"
+              className="relative h-full w-full"
             >
               <div className="absolute left-1/2 top-0 h-[603px] w-[1792px] -translate-x-1/2 overflow-hidden rounded-[48px] bg-transparent max-[1200px]:h-auto max-[1200px]:w-[calc(100%-64px)] max-[1200px]:aspect-[1200/861] max-[1200px]:rounded-[32px] max-[800px]:w-[calc(100%-48px)] max-[760px]:rounded-[24px]">
-                <div className="absolute left-1/2 top-[-129px] h-[861px] w-[1200px] -translate-x-1/2 overflow-hidden rounded-[48px] max-[1200px]:top-0 max-[1200px]:h-full max-[1200px]:w-full max-[1200px]:rounded-[32px] max-[800px]:rounded-[24px]">
+                <div className="absolute left-1/2 top-[-129.01px] h-[861.02px] w-[1200px] -translate-x-1/2 overflow-hidden rounded-[48px] max-[1200px]:top-0 max-[1200px]:h-full max-[1200px]:w-full max-[1200px]:rounded-[32px] max-[800px]:rounded-[24px]">
                   <video
                     autoPlay
                     muted
@@ -604,11 +527,11 @@ export default function Home() {
                     />
                   </video>
 
-                  <div className="pointer-events-none absolute left-1/2 top-1/2 h-[130px] w-[556px] -translate-x-1/2 -translate-y-1/2">
+                  <div className="pointer-events-none absolute left-[382px] top-[373.01px] h-[115px] w-[437px]">
                     <img
-                    src={heroLogo}
-                    alt="Dignifyd Digital"
-                    className="block h-[130px] w-[556px] object-contain"
+                      src={heroLogo}
+                      alt="Dignifyd Digital"
+                      className="block h-[115px] w-[437px] object-contain"
                     />
                   </div>
                 </div>
@@ -627,8 +550,8 @@ export default function Home() {
             APPROACH
         ========================================================= */}
 
-        <section className="min-h-[917px] bg-black px-4 pb-16 pt-[64px] max-[1100px]:pb-[98px] max-[800px]:pb-[64px] max-[760px]:min-h-0 max-[760px]:px-4">
-          <div className="mx-auto min-h-[789px] w-[1200px] max-w-full rounded-[50px] bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a] max-[760px]:min-h-0 max-[760px]:rounded-[28px] max-[760px]:pb-12">
+        <section className="h-[917px] min-h-0 bg-black px-4 pb-16 pt-[64px] max-[1100px]:h-auto max-[1100px]:pb-[98px] max-[800px]:pb-[64px] max-[760px]:min-h-0 max-[760px]:px-4">
+          <div className="mx-auto h-[789px] min-h-0 w-[1200px] max-w-full rounded-[50px] border-t border-white/10 bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a] max-[1100px]:h-auto max-[760px]:min-h-0 max-[760px]:rounded-[28px] max-[760px]:pb-12">
             <div className="mx-auto w-[1104px] max-w-[calc(100%-96px)] pt-[64px] text-center max-[760px]:max-w-[calc(100%-40px)] max-[760px]:pt-10">
               <Eyebrow>
                 Our Approach
@@ -674,19 +597,19 @@ export default function Home() {
           <WorkRail
             images={galleryRowOne}
             initialX={0}
-            top={25}
+            top={2.16}
           />
 
           <WorkRail
             images={galleryRowTwo}
             initialX={-932}
-            top={302}
+            top={279.16}
           />
 
           <WorkRail
             images={galleryRowThree}
             initialX={-466}
-            top={579}
+            top={556.16}
           />
         </section>
 
@@ -694,29 +617,32 @@ export default function Home() {
             VALUE
         ========================================================= */}
 
-        <section className="bg-black px-[24px] pb-[116px] pt-[72px] max-[1100px]:pb-[97px] max-[800px]:pb-[269px] max-[760px]:pb-[71px]">
+        <section className="h-[932px] bg-black px-[24px] pb-[116px] pt-[72px] max-[1100px]:h-auto max-[1100px]:pb-[97px] max-[800px]:pb-[269px] max-[760px]:pb-[71px]">
           <div className="mx-auto w-[1200px] max-w-full">
             <div className="text-center">
               <Eyebrow>
                 Value
               </Eyebrow>
 
-              <h2 className="mt-[20px] text-[70px] font-medium leading-[1.05] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
+              <h2 className="mx-auto mt-[20px] h-[91px] w-[740px] max-w-full text-[70px] font-medium leading-[88px] tracking-[-3.5px] max-[1000px]:h-auto max-[1000px]:text-[54px] max-[760px]:text-[38px]">
                 Agile, precise{" "}
-                <span className="font-['Baskerville'] font-normal italic tracking-normal">
-                  &amp; scalable.
+                <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal">
+                  &amp;
+                </span>{" "}
+                <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal">
+                  scalable.
                 </span>
               </h2>
 
-              <p className="mx-auto mt-[22px] max-w-[980px] text-[22px] leading-[32px] text-[#999] max-[760px]:text-[16px] max-[760px]:leading-[24px]">
+              <p className="mx-auto mt-[22px] h-[66px] w-[1200px] max-w-full text-[22px] font-medium leading-[33px] tracking-[-0.44px] text-[#999] max-[760px]:h-auto max-[760px]:text-[16px] max-[760px]:leading-[24px]">
                 Dignifyd Digital replaces fragmented vendors with a unified
                 digital partner, delivering consistent, performance-driven
                 outcomes through structured engagement models.
               </p>
             </div>
 
-            <div className="mt-[58px] grid grid-cols-[600px_1fr] items-start gap-[48px] max-[1100px]:grid-cols-1 max-[760px]:mt-[75px]">
-              <article className="grid h-[320px] w-[600px] max-w-full grid-cols-[58%_42%] overflow-hidden rounded-[24px] border border-white/10 bg-[#0d0d0d] max-[760px]:order-2 max-[760px]:h-auto max-[760px]:grid-cols-1">
+            <div className="mt-[58px] grid grid-cols-[741px_395px] items-start gap-[64px] max-[1100px]:grid-cols-1 max-[1100px]:gap-[34px] max-[760px]:mt-[75px]">
+              <article className="mt-[34.39px] grid h-[349.2px] w-[741px] max-w-full grid-cols-[58%_42%] overflow-hidden rounded-[24px] bg-[#0d0d0d] max-[1100px]:mt-0 max-[760px]:order-2 max-[760px]:h-auto max-[760px]:grid-cols-1">
                 <div className="flex flex-col justify-end p-[26px] max-[760px]:order-2 max-[760px]:p-[24px]">
                   <p className="text-[14px] leading-[22px] text-white">
                     &ldquo;At Dignifyd Digital, we believe digital success is
@@ -736,7 +662,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="relative min-h-[320px] overflow-hidden bg-[#131313] max-[760px]:order-1 max-[760px]:h-[350px] max-[760px]:min-h-0">
+                <div className="relative min-h-[349.2px] overflow-hidden bg-[#131313] max-[760px]:order-1 max-[760px]:h-[350px] max-[760px]:min-h-0">
                   <img
                     src={portrait}
                     alt="Paavan Ahuja"
@@ -745,7 +671,7 @@ export default function Home() {
                 </div>
               </article>
 
-              <div className="flex flex-col justify-center gap-[34px] py-[18px] max-[760px]:order-1 max-[760px]:gap-[72px]">
+              <div className="flex w-[395px] max-w-full flex-col justify-center gap-[34px] py-[18px] max-[1100px]:w-full max-[760px]:order-1 max-[760px]:gap-[72px]">
                 {[
                   [
                     "Scalable Execution Requests",
@@ -761,11 +687,11 @@ export default function Home() {
                   ],
                 ].map(([title, copy]) => (
                   <article key={title}>
-                    <h3 className="text-[21px] font-medium tracking-[-0.5px]">
+                    <h3 className="h-[35px] text-[28px] font-medium leading-[35px] tracking-[-0.56px]">
                       {title}
                     </h3>
 
-                    <p className="mt-[8px] max-w-[310px] text-[14px] leading-[22px] text-[#999] max-[760px]:max-w-full">
+                    <p className="mt-[15px] h-auto w-[395px] max-w-full text-[18px] font-medium leading-[27px] tracking-[-0.36px] text-[#999]">
                       {copy}
                     </p>
                   </article>
@@ -779,16 +705,16 @@ export default function Home() {
             CAPABILITIES
         ========================================================= */}
 
-        <section className="bg-[#0a0a0a] px-[24px] pb-[100px] pt-[40px] max-[1100px]:pb-[39px] max-[800px]:pb-[9px] max-[760px]:pb-[20px]">
-          <div className="mx-auto w-[1200px] max-w-full rounded-[50px] border border-white/10 bg-[#0d0d0d] px-[48px] pt-[64px] pb-[64px] max-[1100px]:pb-[28px] max-[760px]:rounded-[28px] max-[760px]:px-[20px]">
+        <section className="h-[1141px] bg-black px-[24px] pb-0 pt-[64px] max-[1100px]:h-auto max-[1100px]:pb-[39px] max-[800px]:pb-[9px] max-[760px]:pb-[20px]">
+          <div className="mx-auto h-[1077px] min-h-0 w-[1200px] max-w-full rounded-[50px] border-t border-white/10 bg-[#0d0d0d] px-[48px] pt-[64px] pb-[64px] max-[1100px]:h-auto max-[1100px]:pb-[28px] max-[760px]:rounded-[28px] max-[760px]:px-[20px]">
             <div className="text-center">
               <Eyebrow>
                 Capabilities
               </Eyebrow>
 
-              <h2 className="mt-[18px] text-[70px] font-medium leading-[1.1] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
+              <h2 className="mt-[18px] text-[70px] font-medium leading-[88px] tracking-[-3.5px] max-[1000px]:text-[54px] max-[1000px]:leading-[1.1] max-[760px]:text-[38px]">
                 Why leading brands{" "}
-                <span className="font-['Baskerville'] font-normal italic tracking-normal">
+                <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal">
                   trust us.
                 </span>
               </h2>
@@ -846,20 +772,21 @@ export default function Home() {
             SERVICES
         ========================================================= */}
 
-        <section className="bg-black pb-[72px] pt-[92px]">
+        <section className="mx-auto h-[590px] w-[1436px] max-w-[calc(100vw-4px)] bg-[#0a0a0a] pb-[39px] pt-[92px] max-[1100px]:h-auto max-[1100px]:pb-[72px]">
           <div className="mx-auto w-[1200px] max-w-[calc(100vw-32px)] text-center">
             <Eyebrow>
               Services
             </Eyebrow>
 
-            <h2 className="mt-[18px] text-[70px] font-medium leading-[1.08] tracking-[-3.5px] max-[1000px]:text-[54px] max-[760px]:text-[38px]">
-              All your digital{" "}
-              <span className="font-['Baskerville'] font-normal italic tracking-normal">
-                needs.
-              </span>
+            <h2 className="mx-auto mt-[18px] h-[91px] w-[651px] max-w-full text-[70px] font-medium leading-[88px] tracking-[-3.5px] max-[1000px]:h-auto max-[1000px]:text-[54px] max-[1000px]:leading-[1.1] max-[760px]:text-[38px]">
+              All your{" "}
+              <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal">
+                digital
+              </span>{" "}
+              needs.
             </h2>
 
-            <p className="mx-auto mt-[18px] max-w-[760px] text-[18px] leading-[28px] text-[#999]">
+            <p className="mx-auto mt-[16px] h-[66px] w-[1200px] max-w-full text-[22px] font-medium leading-[33px] tracking-[-0.44px] text-[#999] max-[760px]:h-auto max-[760px]:text-[16px] max-[760px]:leading-[24px]">
               Modern businesses need more than isolated solutions. We deliver
               integrated digital services that align design, technology, and
               growth under one strategic partner.
@@ -868,15 +795,7 @@ export default function Home() {
 
           <ServiceMarquee />
 
-          <div className="mt-[38px] flex justify-center">
-            <a
-              href="/contact"
-              className="inline-flex h-[68px] w-[194px] items-center justify-center rounded-full bg-[#018d87] text-[18px] font-medium text-white transition-all duration-300 hover:bg-[#00a69f]"
-            >
-              Book a call
-            </a>
-          </div>
-        </section>
+         </section>
 
         {/* =========================================================
             CTA + FOOTER
