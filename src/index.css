@@ -35,12 +35,12 @@
 }
 
 /* =========================
-   BASKERVILLE
+   BASKERVILLE / BASKERVVILLE
    ========================= */
 
 @font-face {
   font-family: "Baskerville";
-  src: url("./assets/fonts/baskerville-regular.ttf") format("truetype");
+  src: url("./assets/fonts/baskervville-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -48,7 +48,23 @@
 
 @font-face {
   font-family: "Baskerville";
-  src: url("./assets/fonts/baskerville-italic.ttf") format("truetype");
+  src: url("./assets/fonts/baskervville-italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baskervville";
+  src: url("./assets/fonts/baskervville-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baskervville";
+  src: url("./assets/fonts/baskervville-italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
