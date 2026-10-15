@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
 
@@ -46,8 +47,115 @@ const locations = [
 ];
 
 function Contact() {
-  function handleSubmit(event) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
+
+  async function handleSubmit(event) {
     event.preventDefault();
+    if (isSubmitting) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const apiUrl = (import.meta.env.VITE_CONTACT_API_URL || "").trim();
+
+    // Company name is intentionally omitted, as requested.
+    const payload = {
+      firstName: String(formData.get("firstName") || "").trim(),
+      lastName: String(formData.get("lastName") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      phone: String(formData.get("mobile") || "").trim(),
+      requirements: String(formData.get("requirements") || "").trim(),
+    };
+
+    setStatus({ type: "", message: "" });
+
+    // Use visible validation messages instead of relying only on browser bubbles.
+    if (!payload.firstName || !payload.lastName || !payload.email) {
+      setStatus({
+        type: "error",
+        message: "Please enter your first name, last name, and email address.",
+      });
+      return;
+    }
+
+    if (!apiUrl) {
+      setStatus({
+        type: "error",
+        message: "The contact API URL is missing. Check VITE_CONTACT_API_URL in .env.local, then restart Vite.",
+      });
+      console.error("Contact API configuration error: VITE_CONTACT_API_URL is empty.");
+      return;
+    }
+
+    if (!/^https?:\/\//i.test(apiUrl)) {
+      setStatus({
+        type: "error",
+        message: "The contact API URL must start with https:// or http://.",
+      });
+      console.error("Contact API configuration error: invalid URL format.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 15000);
+
+    try {
+      console.info("Contact form: sending request to configured API endpoint.");
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      const responseText = await response.text();
+      let result = null;
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText);
+        } catch {
+          result = { message: responseText };
+        }
+      }
+
+      if (!response.ok) {
+        const apiMessage =
+          typeof result?.message === "string"
+            ? result.message
+            : typeof result?.error === "string"
+              ? result.error
+              : `The API returned HTTP ${response.status}.`;
+        throw new Error(apiMessage);
+      }
+
+      setStatus({
+        type: "success",
+        message: "Thank you! Your enquiry has been submitted successfully.",
+      });
+      form.reset();
+      console.info(`Contact form: API returned HTTP ${response.status}.`);
+    } catch (error) {
+      console.error("Contact API error:", error);
+
+      let message = "Unable to submit your enquiry. Please try again.";
+      if (error?.name === "AbortError") {
+        message = "The API took too long to respond. Please try again or contact the site team.";
+      } else if (error instanceof TypeError) {
+        message = "Could not connect to the contact API. Check the API URL, CORS settings, and browser Console/Network errors.";
+      } else if (error?.message) {
+        message = error.message;
+      }
+
+      setStatus({ type: "error", message });
+    } finally {
+      window.clearTimeout(timeoutId);
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -141,6 +249,7 @@ function Contact() {
 
           <form
             onSubmit={handleSubmit}
+            noValidate
             className="
               mx-auto
               mt-[64px]
@@ -371,6 +480,7 @@ function Contact() {
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="
                 flex
                 h-[52px]
@@ -392,10 +502,26 @@ function Contact() {
                 hover:bg-[#00A69F]
                 hover:shadow-[0_0_30px_rgba(1,141,135,0.35)]
                 active:scale-[0.98]
+                disabled:cursor-not-allowed
+                disabled:opacity-70
               "
             >
-              Book a call
+              {isSubmitting ? "Submitting..." : "Book a call"}
             </button>
+
+            {status.message && (
+              <p
+                role={status.type === "error" ? "alert" : "status"}
+                aria-live="polite"
+                className={
+                  status.type === "success"
+                    ? "text-sm text-emerald-400"
+                    : "text-sm text-red-400"
+                }
+              >
+                {status.message}
+              </p>
+            )}
           </form>
         </section>
 
@@ -442,12 +568,7 @@ function Contact() {
                 <article
                   key={location.city}
                   className={`
-                    ${
-                      isBottomRow
-                        ? "col-span-3"
-                        : "col-span-2"
-                    }
-
+                    ${isBottomRow ? "col-span-3" : "col-span-2"}
                     flex
                     min-h-[300px]
                     flex-col
@@ -460,9 +581,7 @@ function Contact() {
                     px-6
                     py-7
                     text-center
-
                     max-[1100px]:px-4
-
                     max-[760px]:col-span-1
                     max-[760px]:min-h-[270px]
                   `}
@@ -507,7 +626,6 @@ function Contact() {
                     <br />
                     {location.address}
                     <br />
-
                     <a
                       href={`tel:${location.phone}`}
                       className="

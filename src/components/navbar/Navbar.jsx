@@ -1,4 +1,4 @@
-﻿import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 import { useState } from "react";
 
@@ -35,16 +35,16 @@ export default function Navbar() {
         transition-colors
         duration-200
         max-[1100px]:left-0
-        max-[1100px]:top-[40px]
-        max-[1100px]:h-[28px]
+        max-[1100px]:top-0
+        max-[1100px]:h-[56px]
         max-[1100px]:w-full
         max-[1100px]:translate-x-0
         max-[1100px]:rounded-none
         max-[1100px]:border-0
         max-[1100px]:bg-transparent
-        max-[1100px]:px-[24px]
+        max-[1100px]:px-[20px]
         max-[1100px]:shadow-none
-        max-[1100px]:backdrop-blur-0
+        max-[1100px]:backdrop-blur-none
       "
     >
       <a
@@ -267,52 +267,121 @@ export default function Navbar() {
       </button>
 
       {menuOpen && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="
-            absolute
-            right-[24px]
-            top-[calc(100%+12px)]
-            flex
-            w-[220px]
-            flex-col
-            rounded-[16px]
-            border
-            border-white/10
-            bg-[rgba(9,13,12,0.88)]
-            p-2
-            shadow-[0_18px_45px_rgba(0,0,0,0.36)]
-            backdrop-blur-[18px]
-            min-[1101px]:hidden
-          "
-        >
-          {[
-            { label: "About", href: "/about" },
-            { label: "Services", href: "/services" },
-            { label: "Contact Us", href: "/contact" },
-            ...serviceLinks,
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="
-                rounded-[9px]
-                px-3
-                py-[10px]
-                text-[13px]
-                leading-[18px]
-                text-white
-                transition-colors
-                duration-150
-                hover:bg-white/[0.08]
-              "
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="fixed inset-0 z-[99] bg-black/50 backdrop-blur-[3px] min-[1101px]:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+
+          {/* Floating Top Drawer matching Live Site (Screenshot 2) */}
+          <div
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="
+              fixed
+              inset-x-0
+              top-0
+              z-[100]
+              flex
+              w-full
+              flex-col
+              rounded-b-[24px]
+              border-b
+              border-white/10
+              bg-[#0c0d0d]
+              px-6
+              pb-6
+              pt-4
+              shadow-[0_25px_60px_rgba(0,0,0,0.9)]
+              min-[1101px]:hidden
+            "
+          >
+            {/* Top Bar inside overlay */}
+            <div className="flex h-[40px] items-center justify-between">
+              <a
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center"
+              >
+                <img
+                  src={logo}
+                  alt="Dignifyd Digital"
+                  className="h-[20px] w-auto brightness-0 invert"
+                />
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close navigation"
+                className="inline-flex h-10 w-10 items-center justify-center text-white"
+              >
+                <svg viewBox="0 0 20 20" className="h-6 w-6">
+                  <path
+                    d="m5 5 10 10M15 5 5 15"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="1.8"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Nav links matching Screenshot 2 */}
+            <nav className="mt-5 flex flex-col gap-4">
+              {[
+                { label: "About Us", href: "/about" },
+                { label: "Services", href: "/services" },
+                { label: "Portfolio", href: "/#features" },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="
+                    text-[17px]
+                    font-medium
+                    leading-[22px]
+                    text-[#fcfcfa]
+                    transition-colors
+                    hover:text-[#018d87]
+                  "
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Contact Us button matching Screenshot 2 */}
+            <div className="mt-6">
+              <a
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="
+                  flex
+                  h-[46px]
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/15
+                  bg-white/[0.04]
+                  text-[15px]
+                  font-medium
+                  text-[#fcfcfa]
+                  transition-all
+                  hover:border-white/30
+                  hover:bg-white/[0.08]
+                "
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </header>
   );

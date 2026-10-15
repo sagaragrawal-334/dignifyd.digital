@@ -95,22 +95,22 @@ function About() {
 
       <main>
         {/* HERO */}
-        <section className="px-6 pt-[160px] text-center">
-          <div className="relative mx-auto h-[225px] w-[1200px] max-w-full">
-            <h1 className="absolute left-1/2 top-[-2px] m-0 w-[626.5px] max-w-full -translate-x-1/2 text-[70px] font-medium leading-[88px] tracking-[-3.5px] text-[#fbfafc]">
-              <span className="block h-[88px]">
+        <section className="px-6 pt-[160px] text-center max-[900px]:pt-[100px] max-[760px]:pt-[84px]">
+          <div className="relative mx-auto h-[225px] w-[1200px] max-w-full max-[900px]:h-auto">
+            <h1 className="absolute left-1/2 top-[-2px] m-0 w-[626.5px] max-w-full -translate-x-1/2 text-[70px] font-medium leading-[88px] tracking-[-3.5px] text-[#fbfafc] max-[900px]:static max-[900px]:translate-x-0 max-[900px]:w-full max-[900px]:text-[42px] max-[900px]:leading-[1.15] max-[900px]:tracking-[-2px] max-[374px]:text-[34px]">
+              <span className="block h-[88px] max-[900px]:h-auto">
                 Delivering Long-Term
               </span>
 
-              <span className="block h-[91px] leading-[91px]">
-                <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal">
+              <span className="block h-[91px] leading-[91px] max-[900px]:h-auto max-[900px]:leading-tight">
+                <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal max-[900px]:leading-tight">
                   Digital
                 </span>{" "}
                 <span>Value.</span>
               </span>
             </h1>
 
-            <p className="absolute left-1/2 top-[197px] m-0 h-[50px] w-[1200px] max-w-full -translate-x-1/2 text-[20px] font-medium leading-[25px] tracking-[-0.4px] text-[#999]">
+            <p className="absolute left-1/2 top-[197px] m-0 h-[50px] w-[1200px] max-w-full -translate-x-1/2 text-[20px] font-medium leading-[25px] tracking-[-0.4px] text-[#999] max-[900px]:static max-[900px]:translate-x-0 max-[900px]:mt-[20px] max-[900px]:h-auto max-[900px]:w-full max-[900px]:text-[16px] max-[900px]:leading-[24px]">
               From strategy to execution, we help ambitious brands create
               digital systems that drive visibility, engagement, and
               sustainable growth.

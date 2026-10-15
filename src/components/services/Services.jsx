@@ -44,7 +44,7 @@ function Services() {
         <section className="px-6 pt-[160px] max-[760px]:px-6 max-[760px]:pt-[150px]">
           <div className="mx-auto w-[1200px] max-w-full">
             {/* HERO */}
-            <div className="relative h-[241px] w-full">
+            <div className="relative h-[241px] w-full max-[760px]:h-auto max-[760px]:text-center">
               <h1
                 className="
                   absolute left-[204.14px] top-[-2px]
@@ -54,12 +54,13 @@ function Services() {
                   text-[#fbfafc]
                   max-[1000px]:left-1/2 max-[1000px]:w-[90%] max-[1000px]:-translate-x-1/2
                   max-[1000px]:text-[56px] max-[1000px]:leading-[1.1]
-                  max-[760px]:top-0 max-[760px]:w-[262px]
-                  max-[760px]:text-[54px] max-[760px]:leading-[64px]
+                  max-[760px]:static max-[760px]:translate-x-0 max-[760px]:w-full
+                  max-[760px]:h-auto max-[760px]:text-[42px] max-[760px]:leading-[1.15] max-[760px]:tracking-[-2px]
+                  max-[374px]:text-[34px]
                 "
               >
                 What we do,{" "}
-                <span className="font-['Baskerville',serif] font-normal italic leading-[91px] tracking-normal">
+                <span className="font-['Baskerville',serif] font-normal italic leading-[91px] tracking-normal max-[760px]:leading-tight">
                   delivered well.
                 </span>
               </h1> 
@@ -73,12 +74,12 @@ function Services() {
                   text-[#999999]
                   max-[1000px]:left-1/2 max-[1000px]:w-[90%] max-[1000px]:-translate-x-1/2
                   max-[1000px]:text-[20px] max-[1000px]:leading-[30px]
-                  max-[760px]:top-[105px] max-[760px]:h-auto max-[760px]:w-[262px]
+                  max-[760px]:static max-[760px]:translate-x-0 max-[760px]:mt-4 max-[760px]:h-auto max-[760px]:w-full
                   max-[760px]:text-[16px] max-[760px]:leading-[24px]
                 "
               >
-                Our services combine strategic thinking, thoughtful design, and  <br /> performance-
-                driven execution to help brands build clarity, scale efficiently, and <br /> grow with purpose.
+                Our services combine strategic thinking, thoughtful design, and performance-driven
+                execution to help brands build clarity, scale efficiently, and grow with purpose.
               </p>
             </div>
 

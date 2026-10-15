@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import heroVideo from "../../assets/hero-video.mp4";
 import SiteFooter from "./SiteFooter";
 
 function SiteCTA() {
   const videoRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -13,45 +15,34 @@ function SiteCTA() {
     video.defaultMuted = true;
     video.playsInline = true;
     video.loop = true;
-    video.playbackRate = 1.55;
+    video.playbackRate = 1.35;
 
     const playVideo = () => {
-      video.play().catch(() => {});
-    };
-
-    const handleLoaded = () => {
-      playVideo();
-    };
-
-    const handlePause = () => {
-      if (!document.hidden) {
-        playVideo();
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => { });
       }
     };
 
-    const handleVisibility = () => {
-      if (!document.hidden) {
-        playVideo();
-      }
-    };
-
-    video.addEventListener("loadedmetadata", handleLoaded);
-    video.addEventListener("loadeddata", handleLoaded);
-    video.addEventListener("canplay", handleLoaded);
-    video.addEventListener("pause", handlePause);
-    document.addEventListener("visibilitychange", handleVisibility);
-
+    video.addEventListener("loadedmetadata", playVideo);
+    video.addEventListener("loadeddata", playVideo);
+    video.addEventListener("canplay", playVideo);
     playVideo();
 
-    const retryTimer = window.setInterval(playVideo, 3000);
+    const handleInteraction = () => {
+      playVideo();
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+    };
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("scroll", handleInteraction, { passive: true });
 
     return () => {
-      window.clearInterval(retryTimer);
-      video.removeEventListener("loadedmetadata", handleLoaded);
-      video.removeEventListener("loadeddata", handleLoaded);
-      video.removeEventListener("canplay", handleLoaded);
-      video.removeEventListener("pause", handlePause);
-      document.removeEventListener("visibilitychange", handleVisibility);
+      video.removeEventListener("loadedmetadata", playVideo);
+      video.removeEventListener("loadeddata", playVideo);
+      video.removeEventListener("canplay", playVideo);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
     };
   }, []);
 
@@ -73,18 +64,23 @@ function SiteCTA() {
         max-[760px]:pt-14
       "
     >
+      {/* Radiant emerald/teal ambient glow matching Figma & Live site */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(1,141,135,0.42)_0%,rgba(0,138,137,0.22)_40%,rgba(10,10,10,0.92)_72%)]"
+      />
+
       <video
         ref={videoRef}
         className="
           pointer-events-none
           absolute
           inset-0
-          z-0
+          z-[1]
           h-full
           w-full
           object-cover
           object-center
-          opacity-[0.52]
+          opacity-[0.68]
         "
         autoPlay
         muted
@@ -96,15 +92,14 @@ function SiteCTA() {
         <source src={heroVideo} type="video/mp4" />
       </video>
 
-      {/* Main video blending layer */}
+      {/* Subtle blend overlay so video glow is vivid yet text is crisp */}
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          z-[1]
-          bg-[linear-gradient(180deg,rgba(8,9,9,0.92)_0%,rgba(8,9,9,0.68)_42%,rgba(5,16,15,0.42)_72%,rgba(4,10,9,0.85)_100%)]
-        "
+          z-[2]
+          bg-[linear-gradient(180deg,rgba(10,10,10,0.78)_0%,rgba(10,10,10,0.35)_45%,rgba(10,10,10,0.85)_100%)]"
       />
 
       {/* Top transition */}
@@ -114,11 +109,10 @@ function SiteCTA() {
           absolute
           inset-x-0
           top-0
-          z-[2]
-          h-[120px]
+          z-[3]
+          h-[90px]
           bg-gradient-to-b
           from-[#0a0a0a]
-          via-[#0a0a0a]/70
           to-transparent
         "
       />
@@ -130,16 +124,22 @@ function SiteCTA() {
           absolute
           inset-x-0
           bottom-0
-          z-[2]
-          h-[130px]
+          z-[3]
+          h-[100px]
           bg-gradient-to-t
           from-[#0a0a0a]
-          via-[#0a0a0a]/65
           to-transparent
         "
       />
 
-      <div className="relative z-10 my-auto flex flex-col items-center px-6 py-12 max-[760px]:px-5">
+      {/* Scroll-triggered reveal animation for CTA content */}
+      <motion.div
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 38 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 my-auto flex flex-col items-center px-6 py-12 max-[760px]:px-5"
+      >
         <h2
           className="
             m-0
@@ -152,6 +152,8 @@ function SiteCTA() {
             max-[760px]:text-[52px]
             max-[760px]:leading-[1.15]
             max-[760px]:tracking-[-2.6px]
+            max-[374px]:text-[42px]
+            max-[374px]:tracking-[-2.1px]
           "
         >
           Are you{" "}
@@ -210,9 +212,17 @@ function SiteCTA() {
         >
           Book a call
         </a>
-      </div>
+      </motion.div>
 
-      <SiteFooter />
+      {/* Footer reveal animation */}
+      <motion.div
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
+      >
+        <SiteFooter />
+      </motion.div>
     </section>
   );
 }
