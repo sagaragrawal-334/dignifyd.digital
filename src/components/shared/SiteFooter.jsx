@@ -1,46 +1,29 @@
 import logo from "../../assets/logo.png";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
 
 function SiteFooter() {
   return (
-    <motion.footer
-      className="site-footer"
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      <footer className="site-footer">
-        <div className="site-footer-inner">
-          <nav className="site-footer-nav" aria-label="Footer navigation">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/services">Portfolio</a>
-            <a href="/contact">Contact Us</a>
-          </nav>
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <nav className="site-footer-nav" aria-label="Footer navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/services">Portfolio</a>
+          <a href="/contact">Contact Us</a>
+        </nav>
 
-          <p className="site-footer-created">
-            <span>Created by</span>
+        <p className="site-footer-created">
+          <span>Created by</span>
+          <img src={logo} alt="Dignifyd" />
+        </p>
+      </div>
 
-            <img
-              src={logo}
-              alt="Dignifyd"
-            />
-          </p>
-        </div>
-
-        <style>{`
+      <style>{`
         .site-footer {
           position: absolute;
           right: 0;
           bottom: 0;
           left: 0;
-          z-index: 3;
+          z-index: 4;
           width: 100%;
           height: 224.62px;
           background: transparent;
@@ -145,8 +128,7 @@ function SiteFooter() {
           }
         }
       `}</style>
-      </footer>
-    </motion.footer>
+    </footer>
   );
 }
 

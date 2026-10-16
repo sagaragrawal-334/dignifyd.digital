@@ -40,7 +40,7 @@ function Services() {
     <div className="services-page min-h-screen overflow-x-clip bg-[#0a0a0a] font-['Inter',sans-serif] text-[#fbfafc]">
       <Navbar />
 
-      <main>
+      <main className="site-page-content">
         <section className="px-6 pt-[160px] max-[760px]:px-6 max-[760px]:pt-[150px]">
           <div className="mx-auto w-[1200px] max-w-full">
             {/* HERO */}
@@ -63,7 +63,7 @@ function Services() {
                 <span className="font-['Baskerville',serif] font-normal italic leading-[91px] tracking-normal max-[760px]:leading-tight">
                   delivered well.
                 </span>
-              </h1> 
+              </h1>
 
               <p
                 className="
@@ -144,8 +144,6 @@ function Services() {
             </div>
           </div>
         </section>
-
-        <SiteCTA />
       </main>
 
       <style>{`
@@ -199,6 +197,7 @@ function Services() {
           }
         }
       `}</style>
+      <SiteCTA />
     </div>
   );
 }

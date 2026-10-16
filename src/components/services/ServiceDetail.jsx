@@ -246,7 +246,7 @@ function ServiceDetail({ path }) {
     <div className={`service-detail-page ${page.pageClass}`}>
       <Navbar />
 
-      <main>
+      <main className="site-page-content">
         <div className="service-detail-canvas" style={{ height: `${page.canvasHeight}px` }}>
           <div className="service-content-parent">
             <h1 className="service-detail-hero-title">
@@ -322,8 +322,6 @@ function ServiceDetail({ path }) {
             </div>
           </section>
         </div>
-
-        <SiteCTA />
       </main>
 
       <style>{`
@@ -971,6 +969,7 @@ function ServiceDetail({ path }) {
           }
         }
       `}</style>
+      <SiteCTA />
     </div>
   );
 }

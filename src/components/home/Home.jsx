@@ -47,18 +47,41 @@ import gallery11 from "../../assets/gallery-11.jpeg";
 import gallery12 from "../../assets/gallery-12.jpeg";
 
 
-import workstreamsIcon from "../../assets/capabilities/workstreams.svg";
+import { Lottie } from "lottie-react";
+import discoverAnimation from "../../assets/lottie/discover.json";
+import executeAnimation from "../../assets/lottie/execute.json";
+import optimizeAnimation from "../../assets/lottie/optimize.json";
+import fastdeliveryAnimation from "../../assets/lottie/fast-delivery.json";
+import predictablepricingAnimation from "../../assets/lottie/predictable-pricing.json";
+import provenexpertiseAnimation from "../../assets/lottie/proven-expertise.json";
+import customsolutionsAnimation from "../../assets/lottie/custom-solutions.json";
+import iterateAnimation from "../../assets/lottie/iterate.json";
+import workstreamsAnimation from "../../assets/lottie/work-streams.json";
 
-import fastDeliveryIcon from "../../assets/capabilities/fast-delivery.svg";
 
-import predictablePricingIcon from "../../assets/capabilities/predictable-pricing.svg";
+import {
+  Pen,
+  MagicWand,
+  Palette,
+  Laptop,
+  Camera,
+  Pencil,
+  Video,
+  ChartLine,
+  InstagramLogo,
+} from "@phosphor-icons/react";
 
-import provenExpertiseIcon from "../../assets/capabilities/proven-expertise.svg";
-
-import iterateIcon from "../../assets/capabilities/iterate.svg";
-
-import customSolutionsIcon from "../../assets/capabilities/custom-solutions.svg";
-
+const ServiceIcons = {
+  Pen,
+  MagicWand,
+  Palette,
+  Laptop,
+  Camera,
+  Pencil,
+  Video,
+  ChartLine,
+  InstagramLogo,
+};
 
 /* =========================================================================
 
@@ -91,70 +114,12 @@ const approach = [
 
     icon: (
 
-      <svg
-
-        width="44"
-
-        height="44"
-
-        viewBox="0 0 44 44"
-
-        fill="none"
-
-        xmlns="http://www.w3.org/2000/svg"
-
-        aria-hidden="true"
-
-        className="transition-transform duration-300 group-hover:scale-105"
-
-      >
-
-        <circle
-
-          cx="20"
-
-          cy="20"
-
-          r="12"
-
-          stroke="#FBFAFC"
-
-          strokeWidth="2"
-
-          strokeLinecap="round"
-
-          strokeLinejoin="round"
-
-        />
-
-        <path
-
-          d="M29 29L38 38"
-
-          stroke="#00BDB5"
-
-          strokeWidth="2.5"
-
-          strokeLinecap="round"
-
-          strokeLinejoin="round"
-
-        />
-
-        <path
-
-          d="M15 15C16.5 13.5 18.5 12.8 20.5 13"
-
-          stroke="rgba(251,250,252,0.45)"
-
-          strokeWidth="1.5"
-
-          strokeLinecap="round"
-
-        />
-
-      </svg>
-
+      <Lottie
+        src={discoverAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
     ),
 
   },
@@ -167,59 +132,12 @@ const approach = [
 
     icon: (
 
-      <svg
-
-        width="44"
-
-        height="44"
-
-        viewBox="0 0 44 44"
-
-        fill="none"
-
-        xmlns="http://www.w3.org/2000/svg"
-
-        aria-hidden="true"
-
-        className="transition-transform duration-300 group-hover:scale-105"
-
-      >
-
-        <path
-
-          d="M13 14L5 22L13 30"
-
-          stroke="#FBFAFC"
-
-          strokeWidth="2"
-
-          strokeLinecap="round"
-
-          strokeLinejoin="round"
-
-        />
-
-        <path
-
-          d="M31 14L39 22L31 30"
-
-          stroke="#FBFAFC"
-
-          strokeWidth="2"
-
-          strokeLinecap="round"
-
-          strokeLinejoin="round"
-
-        />
-
-        <circle cx="18" cy="22" r="1.5" fill="#00BDB5" />
-
-        <circle cx="22" cy="22" r="1.5" fill="#00BDB5" />
-
-        <circle cx="26" cy="22" r="1.5" fill="#00BDB5" />
-
-      </svg>
+      <Lottie
+        src={executeAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
     ),
 
@@ -233,64 +151,12 @@ const approach = [
 
     icon: (
 
-      <svg
-
-        width="44"
-
-        height="44"
-
-        viewBox="0 0 44 44"
-
-        fill="none"
-
-        xmlns="http://www.w3.org/2000/svg"
-
-        aria-hidden="true"
-
-        className="transition-transform duration-300 group-hover:scale-105"
-
-      >
-
-        <polygon
-
-          points="22,5 25.5,15.5 36.5,15.5 28,22.5 31,33 22,26.5 13,33 16,22.5 7.5,15.5 18.5,15.5"
-
-          stroke="#FBFAFC"
-
-          strokeWidth="1.8"
-
-          strokeLinejoin="round"
-
-          fill="none"
-
-        />
-
-        <path
-
-          d="M26 28C28 32 33 35 38 35"
-
-          stroke="#00BDB5"
-
-          strokeWidth="2"
-
-          strokeLinecap="round"
-
-        />
-
-        <path
-
-          d="M29 33C32 36 35 38 40 38"
-
-          stroke="rgba(0,189,181,0.4)"
-
-          strokeWidth="1.5"
-
-          strokeLinecap="round"
-
-        />
-
-      </svg>
-
+      <Lottie
+        src={optimizeAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
     ),
 
   },
@@ -312,7 +178,14 @@ const capabilities = [
 
     copy: "All initiatives tracked through structured queues with clear ownership.",
 
-    icon: workstreamsIcon,
+    icon:
+
+      <Lottie
+        src={workstreamsAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
@@ -322,7 +195,14 @@ const capabilities = [
 
     copy: "Agile execution powered by prioritisation, sprints, and delivery benchmarks.",
 
-    icon: fastDeliveryIcon,
+    icon:
+
+      <Lottie
+        src={fastdeliveryAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
@@ -332,7 +212,14 @@ const capabilities = [
 
     copy: "Transparent scope, clear commercials, and outcome-driven planning.",
 
-    icon: predictablePricingIcon,
+    icon:
+
+      <Lottie
+        src={predictablepricingAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
@@ -342,7 +229,14 @@ const capabilities = [
 
     copy: "Experience across brands, sectors, and high-impact digital initiatives.",
 
-    icon: provenExpertiseIcon,
+    icon:
+
+      <Lottie
+        src={provenexpertiseAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
@@ -352,7 +246,14 @@ const capabilities = [
 
     copy: "Continuous refinement guided by feedback, data, and performance insights.",
 
-    icon: iterateIcon,
+    icon:
+
+      <Lottie
+        src={iterateAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
@@ -362,123 +263,18 @@ const capabilities = [
 
     copy: "Custom strategies and executions aligned to your business goals.",
 
-    icon: customSolutionsIcon,
+    icon:
+
+      <Lottie
+        src={customsolutionsAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 64, height: 64 }}
+      />
 
   },
 
 ];
-
-
-/* =========================================================================
-
-   SERVICES PILL ICONS (Phosphor Regular 256x256 inline SVG)
-
-========================================================================= */
-
-const ServiceIcons = {
-
-  Pen: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M227.31,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l123.31-123.3a16,16,0,0,0,0-22.64ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.31,64l24-24L216,84.69Z" />
-
-    </svg>
-
-  ),
-
-  PaintBrush: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M216,24H72A24,24,0,0,0,48,48v88a48.05,48.05,0,0,0,48,48h8a24,24,0,0,1,24,24v8a24,24,0,0,0,48,0V48A24,24,0,0,0,216,24ZM64,48a8,8,0,0,1,8-8H200V96H64ZM96,168A32,32,0,0,1,64,136V112H200v32a8,8,0,0,1-8,8H128a40,40,0,0,0-32,16Zm64,48a8,8,0,0,1-16,0v-8a40,40,0,0,0-7.39-23A24,24,0,0,1,160,168Z" />
-
-    </svg>
-
-  ),
-
-  MagicWand: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M221.66,90.34,165.66,34.34a8,8,0,0,0-11.32,0L34.34,154.34a8,8,0,0,0,0,11.32l56,56a8,8,0,0,0,11.32,0l120-120A8,8,0,0,0,221.66,90.34ZM95.66,210.34,45.66,160.34,144,62l50,50ZM192,24a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0V32A8,8,0,0,0,192,24ZM80,48a8,8,0,0,0-8-8H64a8,8,0,0,0,0,16H72A8,8,0,0,0,80,48ZM200,80a8,8,0,0,0,8-8V64a8,8,0,0,0-16,0V72A8,8,0,0,0,200,80Z" />
-
-    </svg>
-
-  ),
-
-  Palette: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M128,24A104,104,0,0,0,24,128a103,103,0,0,0,34.42,77.34A39.6,39.6,0,0,0,86.29,216h18.37a47.4,47.4,0,0,0,47.34-47.34V168a8,8,0,0,1,8-8h16a56.06,56.06,0,0,0,56-56C232,60.65,185.35,24,128,24Zm88,80a40,40,0,0,1-40,40H160a24,24,0,0,0-24,24v.66A31.38,31.38,0,0,1,104.66,200H86.29a23.63,23.63,0,0,1-16.63-6.84A88,88,0,1,1,216,104ZM84,108a12,12,0,1,1,12-12A12,12,0,0,1,84,108Zm44-24a12,12,0,1,1,12-12A12,12,0,0,1,128,84Zm44,24a12,12,0,1,1,12-12A12,12,0,0,1,172,108Z" />
-
-    </svg>
-
-  ),
-
-  Laptop: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M240,184H224V64a16,16,0,0,0-16-16H48A16,16,0,0,0,32,64V184H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,64H208V184H48ZM144,192H112a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Z" />
-
-    </svg>
-
-  ),
-
-  Camera: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.29,48h55.42l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
-
-    </svg>
-
-  ),
-
-  Pencil: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l123.32-123.3a16,16,0,0,0,0-22.64ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z" />
-
-    </svg>
-
-  ),
-
-  Video: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M244.24,60a8,8,0,0,0-7.75.4l-44.49,27.81V80a24,24,0,0,0-24-24H32A24,24,0,0,0,8,80V176a24,24,0,0,0,24,24H168a24,24,0,0,0,24-24V167.79l44.49,27.81A8,8,0,0,0,248,189.19V66.81A8,8,0,0,0,244.24,60ZM176,176a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H168a8,8,0,0,1,8,8Zm56,2.39-40-25V102.61l40-25Z" />
-
-    </svg>
-
-  ),
-
-  ChartLine: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V172.69L90.34,121a8,8,0,0,1,11.32,0L136,155.31l66.34-66.35a8,8,0,0,1,11.32,11.32L141.66,172a8,8,0,0,1-11.32,0L96,137.66l-56,56V200H224A8,8,0,0,1,232,208Z" />
-
-    </svg>
-
-  ),
-
-  InstagramLogo: () => (
-
-    <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor">
-
-      <path d="M176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm60-88a12,12,0,1,1-12-12A12,12,0,0,1,188,72Z" />
-
-    </svg>
-
-  ),
-
-};
-
 
 function useInView() {
 
@@ -1105,7 +901,7 @@ export default function Home() {
       <Navbar />
 
 
-      <main>
+      <main className="site-page-content">
 
         {/* =========================================================
             HERO + VIDEO
@@ -1584,17 +1380,9 @@ export default function Home() {
 
                   <div className="flex h-[72px] w-[72px] items-center justify-center overflow-visible">
 
-                    <img
-
-                      src={icon}
-
-                      alt=""
-
-                      aria-hidden="true"
-
-                      className="h-[72px] w-[72px] object-contain transition-transform duration-300 hover:scale-[1.05]"
-
-                    />
+                    <div className="flex h-[72px] w-[72px] items-center justify-center overflow-visible transition-transform duration-300 hover:scale-[1.05]">
+                      {icon}
+                    </div>
 
                   </div>
 
@@ -1691,9 +1479,6 @@ export default function Home() {
             CTA + FOOTER
 
         ========================================================= */}
-
-        <SiteCTA />
-
       </main>
 
 
@@ -1817,7 +1602,7 @@ export default function Home() {
         }
 
       `}</style>
-
+      <SiteCTA />
     </div>
 
   );

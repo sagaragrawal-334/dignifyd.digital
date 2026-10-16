@@ -172,7 +172,7 @@ function Contact() {
     >
       <Navbar />
 
-      <main className="w-full">
+      <main className="site-page-content w-full">
         {/* =========================================================
             CONTACT INTRO
         ========================================================= */}
@@ -644,9 +644,8 @@ function Contact() {
             })}
           </div>
         </section>
-
-        <SiteCTA />
       </main>
+      <SiteCTA />
     </div>
   );
 }
