@@ -64,9 +64,8 @@ function BrandRail() {
 function NoteHeading({ children, italic, variant = "strategic" }) {
   return (
     <p
-      className={`absolute left-0 top-[-2px] m-0 text-[48px] font-medium leading-[60px] tracking-[-2.4px] text-[#fbfafc] ${
-        variant === "personal" ? "w-[388px]" : "w-[386px]"
-      }`}
+      className={`absolute left-0 top-[-2px] m-0 text-[48px] font-medium leading-[60px] tracking-[-2.4px] text-[#fbfafc] ${variant === "personal" ? "w-[388px]" : "w-[386px]"
+        }`}
     >
       On a{" "}
       <span className="font-['Baskerville'] font-normal italic leading-[62px] tracking-normal">
@@ -93,7 +92,7 @@ function About() {
     <div className="about-page min-h-screen overflow-x-clip font-['Inter'] text-[#fbfafc]">
       <Navbar />
 
-      <main>
+      <main className="site-page-content">
         {/* HERO */}
         <section className="px-6 pt-[160px] text-center max-[900px]:pt-[100px] max-[760px]:pt-[84px]">
           <div className="relative mx-auto h-[225px] w-[1200px] max-w-full max-[900px]:h-auto">
@@ -244,8 +243,6 @@ function About() {
             </div>
           </div>
         </section>
-
-        <SiteCTA />
       </main>
 
       <style>{`
@@ -302,6 +299,7 @@ function About() {
           }
         }
       `}</style>
+      <SiteCTA />
     </div>
   );
 }
