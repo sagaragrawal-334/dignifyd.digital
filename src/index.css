@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* =========================
-   INTER
-   ========================= */
-
 @font-face {
   font-family: "Inter";
   src: url("./assets/fonts/Inter-4.1/InterVariable.ttf") format("truetype");
@@ -11,10 +7,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-/* =========================
-   INSTRUMENT SERIF
-   ========================= */
 
 @font-face {
   font-family: "Instrument Serif";
@@ -32,10 +24,6 @@
   font-display: swap;
 }
 
-/* =========================
-   BASKERVILLE / BASKERVVILLE
-   ========================= */
-
 @font-face {
   font-family: "Baskerville";
   src: url("./assets/fonts/baskervville-regular.ttf") format("truetype");
@@ -67,10 +55,6 @@
   font-style: italic;
   font-display: swap;
 }
-
-/* =========================
-   SATOSHI
-   ========================= */
 
 @font-face {
   font-family: "Satoshi";
@@ -88,10 +72,6 @@
   font-display: swap;
 }
 
-/* =========================
-   ROOT
-   ========================= */
-
 :root {
   font-family: "Inter", sans-serif;
   color: #fbfafc;
@@ -101,10 +81,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* =========================
-   GLOBAL
-   ========================= */
 
 * {
   box-sizing: border-box;
@@ -120,7 +96,6 @@ body {
   min-width: 320px;
   background: #0a0a0a;
   color: #fbfafc;
-  /* clip hides horizontal overflow without creating a sticky scroll container. */
   overflow-x: clip;
 }
 

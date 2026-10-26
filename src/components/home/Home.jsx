@@ -1,51 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-
 import Navbar from "../navbar/Navbar";
-
 import SiteCTA from "../shared/SiteCTA";
-
 import heroVideo from "../../assets/hero-video.mp4";
 import heroLogo from "../../assets/dignifyd logo.svg";
-
-
 import portrait from "../../assets/portrait.jpg";
-
-
 import brand1 from "../../assets/brand-01.png";
-
 import brand2 from "../../assets/brand-02.png";
-
 import brand3 from "../../assets/brand-03.png";
-
 import brand4 from "../../assets/brand-04.png";
-
 import brand5 from "../../assets/brand-05.png";
-
-
 import gallery1 from "../../assets/gallery-01.png";
-
 import gallery2 from "../../assets/gallery-02.jpeg";
-
 import gallery3 from "../../assets/gallery-03.png";
-
 import gallery4 from "../../assets/gallery-04.jpeg";
-
 import gallery5 from "../../assets/gallery-05.png";
-
 import gallery6 from "../../assets/gallery-06.svg";
-
 import gallery7 from "../../assets/gallery-07.svg";
-
 import gallery8 from "../../assets/gallery-08.jpeg";
-
 import gallery9 from "../../assets/gallery-09.jpeg";
-
 import gallery10 from "../../assets/gallery-10.jpeg";
-
 import gallery11 from "../../assets/gallery-11.jpeg";
-
 import gallery12 from "../../assets/gallery-12.jpeg";
-
 
 import { Lottie } from "lottie-react";
 import discoverAnimation from "../../assets/lottie/discover.json";
@@ -60,60 +35,39 @@ import workstreamsAnimation from "../../assets/lottie/work-streams.json";
 
 
 import {
-  Pen,
-  MagicWand,
-  Palette,
-  Laptop,
-  Camera,
-  Pencil,
-  Video,
-  ChartLine,
-  InstagramLogo,
+  PenIcon,
+  PaintBrushIcon,
+  PaletteIcon,
+  LaptopIcon,
+  CameraIcon,
+  PencilIcon,
+  VideoIcon,
+  ChartLineIcon,
+  InstagramLogoIcon,
 } from "@phosphor-icons/react";
 
 const ServiceIcons = {
-  Pen,
-  MagicWand,
-  Palette,
-  Laptop,
-  Camera,
-  Pencil,
-  Video,
-  ChartLine,
-  InstagramLogo,
+  PenIcon,
+  PaintBrushIcon,
+  PaletteIcon,
+  LaptopIcon,
+  CameraIcon,
+  PencilIcon,
+  VideoIcon,
+  ChartLineIcon,
+  InstagramLogoIcon,
 };
 
-/* =========================================================================
-
-   GALLERY ROWS (4 cards per row, 442px wide + 24px gap = 466px per item)
-
-   One full cycle = 4 * 466px = 1,864px
-
-========================================================================= */
-
 const galleryRowOne = [gallery1, gallery2, gallery3, gallery4];
-
 const galleryRowTwo = [gallery5, gallery6, gallery7, gallery8];
-
 const galleryRowThree = [gallery9, gallery10, gallery11, gallery12];
-
-
-/* =========================================================================
-
-   APPROACH ITEMS & ICONS
-
-========================================================================= */
 
 const approach = [
 
   {
-
     title: "Discover",
-
     copy: "We align on goals, scope, and success metrics before execution.",
-
     icon: (
-
       <Lottie
         src={discoverAnimation}
         loop={true}
@@ -121,36 +75,25 @@ const approach = [
         style={{ width: 64, height: 64 }}
       />
     ),
-
   },
 
   {
-
     title: "Execute",
-
     copy: "Our teams design, build, and deploy with speed and precision.",
-
     icon: (
-
       <Lottie
         src={executeAnimation}
         loop={true}
         autoplay={true}
         style={{ width: 64, height: 64 }}
       />
-
     ),
-
   },
 
   {
-
     title: "Optimize",
-
     copy: "We refine continuously using performance data and feedback loops.",
-
     icon: (
-
       <Lottie
         src={optimizeAnimation}
         loop={true}
@@ -158,35 +101,20 @@ const approach = [
         style={{ width: 64, height: 64 }}
       />
     ),
-
   },
-
 ];
 
-
-/* =========================================================================
-
-   CAPABILITIES ITEMS
-
-========================================================================= */
-
 const capabilities = [
-
   {
-
     title: "Workstreams",
-
     copy: "All initiatives tracked through structured queues with clear ownership.",
-
     icon:
-
       <Lottie
         src={workstreamsAnimation}
         loop={true}
         autoplay={true}
         style={{ width: 64, height: 64 }}
       />
-
   },
 
   {
@@ -728,28 +656,28 @@ function ServiceMarquee() {
 
   const firstRow = [
 
-    { label: "Logos", icon: ServiceIcons.Pen },
+    { label: "Logos", icon: ServiceIcons.PenIcon },
 
-    { label: "Creative Strategy", icon: ServiceIcons.MagicWand },
+    { label: "Creative Strategy", icon: ServiceIcons.PaintBrushIcon },
 
-    { label: "Branding", icon: ServiceIcons.Palette },
+    { label: "Branding", icon: ServiceIcons.PaletteIcon },
 
-    { label: "Website Design", icon: ServiceIcons.Laptop },
+    { label: "Website Design", icon: ServiceIcons.LaptopIcon },
 
   ];
 
 
   const secondRow = [
 
-    { label: "Influencer Marketing", icon: ServiceIcons.Camera },
+    { label: "Influencer Marketing", icon: ServiceIcons.CameraIcon },
 
-    { label: "Copywriting", icon: ServiceIcons.Pencil },
+    { label: "Copywriting", icon: ServiceIcons.PencilIcon },
 
-    { label: "Video Editing", icon: ServiceIcons.Video },
+    { label: "Video Editing", icon: ServiceIcons.VideoIcon },
 
-    { label: "SEO, SEM", icon: ServiceIcons.ChartLine },
+    { label: "SEO, SEM", icon: ServiceIcons.ChartLineIcon },
 
-    { label: "Social Media", icon: ServiceIcons.InstagramLogo },
+    { label: "Social Media", icon: ServiceIcons.InstagramLogoIcon },
 
   ];
 

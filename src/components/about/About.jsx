@@ -1,12 +1,10 @@
 import Navbar from "../navbar/Navbar";
 import SiteCTA from "../shared/SiteCTA";
-
 import brand1 from "../../assets/brand-01.png";
 import brand2 from "../../assets/brand-02.png";
 import brand3 from "../../assets/brand-03.png";
 import brand4 from "../../assets/brand-04.png";
 import brand5 from "../../assets/brand-05.png";
-
 import strategicImage from "../../assets/gallery-06.svg";
 import personalImage from "../../assets/gallery-07.svg";
 
@@ -17,20 +15,16 @@ const brands = [
   { src: brand4, width: 206 },
   { src: brand5, width: 202 },
 ];
-
 const bodyClass =
   "m-0 font-['Inter',Arial,sans-serif] text-[18px] font-medium leading-[27px] tracking-[-0.36px] text-[#999999]";
-
 function BrandRail() {
   const items = [...brands, ...brands, ...brands, ...brands];
-
   return (
     <section className="mt-[64px] h-[100.41px] overflow-hidden bg-transparent">
       <div className="mx-auto w-[1200px] max-w-full overflow-hidden">
         <p className="m-0 text-center text-[16px] font-medium leading-[20px] tracking-[-0.32px] text-[#999]">
           Our designs are featured on:
         </p>
-
         <div
           className="relative mt-[25.41px] h-[55px] overflow-hidden"
           style={{
@@ -60,7 +54,6 @@ function BrandRail() {
     </section>
   );
 }
-
 function NoteHeading({ children, italic, variant = "strategic" }) {
   return (
     <p
@@ -75,7 +68,6 @@ function NoteHeading({ children, italic, variant = "strategic" }) {
     </p>
   );
 }
-
 function SectionHeading({ children, width }) {
   return (
     <h2
@@ -86,21 +78,17 @@ function SectionHeading({ children, width }) {
     </h2>
   );
 }
-
 function About() {
   return (
     <div className="about-page min-h-screen overflow-x-clip font-['Inter'] text-[#fbfafc]">
       <Navbar />
-
       <main className="site-page-content">
-        {/* HERO */}
         <section className="px-6 pt-[160px] text-center max-[900px]:pt-[100px] max-[760px]:pt-[84px]">
           <div className="relative mx-auto h-[225px] w-[1200px] max-w-full max-[900px]:h-auto">
             <h1 className="absolute left-1/2 top-[-2px] m-0 w-[626.5px] max-w-full -translate-x-1/2 text-[70px] font-medium leading-[88px] tracking-[-3.5px] text-[#fbfafc] max-[900px]:static max-[900px]:translate-x-0 max-[900px]:w-full max-[900px]:text-[42px] max-[900px]:leading-[1.15] max-[900px]:tracking-[-2px] max-[374px]:text-[34px]">
               <span className="block h-[88px] max-[900px]:h-auto">
                 Delivering Long-Term
               </span>
-
               <span className="block h-[91px] leading-[91px] max-[900px]:h-auto max-[900px]:leading-tight">
                 <span className="font-['Baskerville'] font-normal italic leading-[91px] tracking-normal max-[900px]:leading-tight">
                   Digital
@@ -108,7 +96,6 @@ function About() {
                 <span>Value.</span>
               </span>
             </h1>
-
             <p className="absolute left-1/2 top-[197px] m-0 h-[50px] w-[1200px] max-w-full -translate-x-1/2 text-[20px] font-medium leading-[25px] tracking-[-0.4px] text-[#999] max-[900px]:static max-[900px]:translate-x-0 max-[900px]:mt-[20px] max-[900px]:h-auto max-[900px]:w-full max-[900px]:text-[16px] max-[900px]:leading-[24px]">
               From strategy to execution, we help ambitious brands create
               digital systems that drive visibility, engagement, and
@@ -116,10 +103,7 @@ function About() {
             </p>
           </div>
         </section>
-
         <BrandRail />
-
-        {/* STRATEGIC */}
         <section className="mt-[140.78px] px-6">
           <div className="mx-auto grid h-[581.81px] w-[1200px] max-w-full grid-cols-[568px_568px] gap-[64px] max-[900px]:h-auto max-[900px]:grid-cols-1">
             <div className="h-[581.81px] w-[568px] overflow-hidden rounded-[12px] border border-white/[0.08] max-[900px]:h-auto max-[900px]:w-full">
@@ -133,7 +117,6 @@ function About() {
             <div className="relative h-[581.81px] w-[568px] max-w-full max-[900px]:h-auto max-[900px]:w-full">
               <NoteHeading italic="strategic">note</NoteHeading>
 
-              {/* Intro */}
               <div className="absolute left-0 top-[90.59px] h-[160.41px] w-[568px] max-[900px]:static max-[900px]:mt-[90px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={509}>
                   We&apos;re passionate about digital excellence
@@ -150,10 +133,8 @@ function About() {
                 </p>
               </div>
 
-              {/* Mission */}
               <div className="absolute left-0 top-[283px] h-[133.41px] w-[568px] max-[900px]:static max-[900px]:mt-[40px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={148}>Our Mission</SectionHeading>
-
                 <p
                   className={`${bodyClass} absolute left-0 top-[54.41px] w-[568px] max-[900px]:static max-[900px]:mt-[19px] max-[900px]:w-full`}
                 >
@@ -163,10 +144,8 @@ function About() {
                 </p>
               </div>
 
-              {/* Vision */}
               <div className="absolute left-0 top-[448.41px] h-[133.41px] w-[568px] max-[900px]:static max-[900px]:mt-[40px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={129}>Our Vision</SectionHeading>
-
                 <p
                   className={`${bodyClass} absolute left-0 top-[54.41px] w-[568px] max-[900px]:static max-[900px]:mt-[19px] max-[900px]:w-full`}
                 >
@@ -179,7 +158,6 @@ function About() {
           </div>
         </section>
 
-        {/* PERSONAL */}
         <section className="mt-[140px] px-6 pb-[138.19px]">
           <div className="mx-auto grid h-[581.81px] w-[1200px] max-w-full grid-cols-[568px_568px] gap-[64px] max-[900px]:h-auto max-[900px]:grid-cols-1">
             <div className="relative h-[581.81px] w-[568px] max-w-full max-[900px]:h-auto max-[900px]:w-full">
@@ -187,7 +165,6 @@ function About() {
                 note
               </NoteHeading>
 
-              {/* Intro */}
               <div className="absolute left-0 top-[90.59px] h-[160.41px] w-[568px] max-[900px]:static max-[900px]:mt-[90px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={440}>
                   We care deeply about how we work
@@ -203,7 +180,6 @@ function About() {
                 </p>
               </div>
 
-              {/* Built */}
               <div className="absolute left-0 top-[283px] h-[133.41px] w-[568px] max-[900px]:static max-[900px]:mt-[40px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={310}>
                   Built on trust and respect
@@ -218,7 +194,6 @@ function About() {
                 </p>
               </div>
 
-              {/* Different */}
               <div className="absolute left-0 top-[448.41px] h-[133.41px] w-[569.45px] max-[900px]:static max-[900px]:mt-[40px] max-[900px]:h-auto max-[900px]:w-full">
                 <SectionHeading width={487}>
                   Different perspectives, shared direction
@@ -251,18 +226,15 @@ function About() {
             top: 20px;
           }
         }
-
         .about-page {
           position: relative;
           isolation: isolate;
           background: #0a0a0a;
         }
-
         .about-page > main {
           position: relative;
           z-index: 1;
         }
-
         .about-page::before {
           content: "";
           position: absolute;
@@ -276,23 +248,19 @@ function About() {
           background: linear-gradient(90deg, #012a2c 0%, #008a89 100%);
           filter: blur(150px);
         }
-
         @keyframes aboutBrands {
           from {
             transform: translateX(0);
           }
-
           to {
             transform: translateX(-50%);
           }
         }
-
         @media (prefers-reduced-motion: reduce) {
           [class*="animate-[aboutBrands"] {
             animation: none !important;
           }
         }
-
         @media (max-width: 900px) {
           .about-page .w-\\[1200px\\] {
             width: 100%;
@@ -303,5 +271,4 @@ function About() {
     </div>
   );
 }
-
 export default About;

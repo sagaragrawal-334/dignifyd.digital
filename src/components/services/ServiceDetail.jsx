@@ -33,8 +33,6 @@ function findAsset(names, fallback) {
     if (found) return found[1];
   }
 
-  // Filename punctuation sometimes differs between local exports. Match only
-  // when one candidate's normalized basename is contained in the full basename.
   for (const candidate of candidates) {
     const found = entries.find(([path]) =>
       normalizeAssetName(path).includes(candidate) || candidate.includes(normalizeAssetName(path)),

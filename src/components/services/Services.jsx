@@ -39,11 +39,9 @@ function Services() {
   return (
     <div className="services-page min-h-screen overflow-x-clip bg-[#0a0a0a] font-['Inter',sans-serif] text-[#fbfafc]">
       <Navbar />
-
       <main className="site-page-content">
         <section className="px-6 pt-[160px] max-[760px]:px-6 max-[760px]:pt-[150px]">
           <div className="mx-auto w-[1200px] max-w-full">
-            {/* HERO */}
             <div className="relative h-[241px] w-full max-[760px]:h-auto max-[760px]:text-center">
               <h1
                 className="
@@ -56,15 +54,13 @@ function Services() {
                   max-[1000px]:text-[56px] max-[1000px]:leading-[1.1]
                   max-[760px]:static max-[760px]:translate-x-0 max-[760px]:w-full
                   max-[760px]:h-auto max-[760px]:text-[42px] max-[760px]:leading-[1.15] max-[760px]:tracking-[-2px]
-                  max-[374px]:text-[34px]
-                "
+                  max-[374px]:text-[34px] "
               >
                 What we do,{" "}
                 <span className="font-['Baskerville',serif] font-normal italic leading-[91px] tracking-normal max-[760px]:leading-tight">
                   delivered well.
                 </span>
               </h1>
-
               <p
                 className="
                   absolute left-[196.36px] top-[114px]
@@ -82,8 +78,6 @@ function Services() {
                 execution to help brands build clarity, scale efficiently, and grow with purpose.
               </p>
             </div>
-
-            {/* SERVICE GRID */}
             <div
               className="
                 grid h-[1153.02px] w-[1200px]
@@ -126,7 +120,6 @@ function Services() {
                       className="block h-full w-full object-cover"
                     />
                   </div>
-
                   <div className="mt-[15px] h-[27px] w-[595px] max-[1000px]:w-full">
                     <p
                       className="
@@ -145,19 +138,16 @@ function Services() {
           </div>
         </section>
       </main>
-
       <style>{`
         .services-page {
           position: relative;
           isolation: isolate;
         }
-
         @media (min-width: 901px) {
           .services-page > header {
             top: 20px !important;
           }
         }
-
         .services-page::before {
           content: "";
           position: absolute;
@@ -175,12 +165,10 @@ function Services() {
           );
           filter: blur(150px);
         }
-
         .services-page > main {
           position: relative;
           z-index: 1;
         }
-
         @media (max-width: 1000px) {
           .services-page::before {
             width: 1100px;
@@ -188,7 +176,6 @@ function Services() {
             transform: translateX(-50%);
           }
         }
-
         @media (max-width: 760px) {
           .services-page::before {
             width: 900px;
@@ -201,5 +188,4 @@ function Services() {
     </div>
   );
 }
-
 export default Services;

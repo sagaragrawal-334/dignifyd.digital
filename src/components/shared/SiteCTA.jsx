@@ -13,15 +13,13 @@ function SiteCTA() {
   const spacerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // The spacer is normal-flow content after the page's <main>. As the final
-  // spacer scrolls through the viewport, it exposes the fixed CTA underneath.
+
   const { scrollYProgress } = useScroll({
     target: spacerRef,
     offset: ["start end", "end end"],
   });
 
-  // This is a subtle enhancement to the physical layered reveal. It reverses
-  // naturally because it is tied to scroll progress, not a one-way in-view trigger.
+
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.65, 1],
@@ -70,14 +68,11 @@ function SiteCTA() {
 
   return (
     <>
-      {/* Keeps the document scrollable for the full height of the hidden CTA. */}
       <div
         ref={spacerRef}
         className="site-cta-spacer"
         aria-hidden="true"
       />
-
-      {/* Fixed behind the page content; the preceding content uncovers it. */}
       <section
         className="site-cta-layer flex w-full flex-col justify-between overflow-hidden bg-[#0a0a0a] pt-20 text-center max-[760px]:pt-14"
         aria-label="Ready to work with Dignifyd Digital?"

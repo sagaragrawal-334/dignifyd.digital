@@ -58,7 +58,6 @@ function Contact() {
     const formData = new FormData(form);
     const apiUrl = (import.meta.env.VITE_CONTACT_API_URL || "").trim();
 
-    // Company name is intentionally omitted, as requested.
     const payload = {
       firstName: String(formData.get("firstName") || "").trim(),
       lastName: String(formData.get("lastName") || "").trim(),
@@ -69,7 +68,6 @@ function Contact() {
 
     setStatus({ type: "", message: "" });
 
-    // Use visible validation messages instead of relying only on browser bubbles.
     if (!payload.firstName || !payload.lastName || !payload.email) {
       setStatus({
         type: "error",
@@ -173,9 +171,6 @@ function Contact() {
       <Navbar />
 
       <main className="site-page-content w-full">
-        {/* =========================================================
-            CONTACT INTRO
-        ========================================================= */}
         <section
           aria-labelledby="contact-title"
           className="
@@ -525,9 +520,7 @@ function Contact() {
           </form>
         </section>
 
-        {/* =========================================================
-            LOCATIONS
-        ========================================================= */}
+        {/* LOCATIONS */}
         <section
           aria-label="Our locations"
           className="
