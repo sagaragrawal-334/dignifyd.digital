@@ -19,7 +19,7 @@ const locations = [
   {
     city: "Illinois",
     country: "U.S.A",
-    address: "2501 Chatham Rd STE R, Springfield, Illinois",
+    address: "245 W Roosevelt Rd, West Chicago, IL 60185, USA",
     phone: "+1-877-735-0397",
     skyline: illinois,
   },
@@ -40,7 +40,7 @@ const locations = [
   {
     city: "Delhi NCR",
     country: "India",
-    address: "C-64, Upper Ground Floor, Sector-2, Noida, Delhi NCR",
+    address: "Ground Floor, F40, Sector 6, Noida 201301",
     phone: "+91-120-450-6748",
     skyline: delhiNcr,
   },
